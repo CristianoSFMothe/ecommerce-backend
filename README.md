@@ -129,3 +129,11 @@ nest g module cache
 # Service
  nest g service cache --no-spec
  ```
+
+## Validações
+
+Para melhor desempenho e segurança o *Nest* trabalha com *Pipes* para geração de validações
+
+```bash
+npm i --save class-validator class-transformer
+```

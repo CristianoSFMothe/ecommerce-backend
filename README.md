@@ -117,3 +117,15 @@ Com o objetivo de retuzir o tempo de busca, será criado um modo de armazena alg
 ```bash
 npm install cache-manager 
 ```
+
+### Seperando o sistema de cache
+
+Para pode utilizar o sistema de cache de forma global
+
+```bash
+# Module
+nest g module cache
+
+# Service
+ nest g service cache --no-spec
+ ```

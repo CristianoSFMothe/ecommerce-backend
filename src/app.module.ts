@@ -17,6 +17,7 @@ import { AddressModule } from './address/address.module';
 import { AddressEntity } from './address/entities/address.entity';
 import { CityEntity } from './city/entites/city.entity';
 import { StateEntity } from './state/entites/state.entity';
+import { CacheModule } from './cache/cache.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -50,6 +51,7 @@ import { StateEntity } from './state/entites/state.entity';
     StateModule,
     CityModule,
     AddressModule,
+    CacheModule,
   ],
   controllers: [],
   providers: [],

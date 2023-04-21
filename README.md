@@ -36,3 +36,20 @@ npm i --save @nestjs/config
 ```bash	
 npm install --save typeorm pg @nestjs/typeorm
 ```
+
+## Migrations
+
+
+```bash
+# Usuário
+npx typeorm migration:create ./src/migration/create_table_user
+
+# Estado
+npx typeorm migration:create ./src/migration/create_table_state
+
+# Cidade
+npx typeorm migration:create ./src/migration/create_table_city
+
+# Endereço
+npx typeorm migration:create ./src/migration/create_table_address
+```

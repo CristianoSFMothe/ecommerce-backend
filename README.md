@@ -2,11 +2,14 @@
 
 ## Configurações
 
+Configurações iniciais e instalações básicas.
+
 * Instalação do *bcrypt*
 
 ```bash
 npm i bcrypt
 ```
+
 * Instalação da tipagem *bcrypt*
 
 ```bash
@@ -15,13 +18,13 @@ npm i -D @types/bcrypt
 
 * Docker
 
-```bash	
+```bash
 docker pull postgres
 ```
 
 * Instancia do Docker
 
-```bash	
+```bash
 docker run --name ecommerce -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
 ```
 
@@ -33,12 +36,13 @@ npm i --save @nestjs/config
 
 * Instalado o PostgreSQL e TypeORM
 
-```bash	
+```bash
 npm install --save typeorm pg @nestjs/typeorm
 ```
 
 ## Migrations
 
+Não é interessante ter na nossa aplicação o `synchronize: true`, pois isso sempre quando houver uma ateração na estrutura da tabela, irá recriar ela toda novamente, podendo fazer com que se perga informações. Para isso usamos o `migration`.
 
 ```bash
 # Usuário
@@ -64,6 +68,8 @@ npx typeorm migration:create ./src/migration/insert_in_city
 ```
 
 ## Criando novos modulos
+
+Criação de módulos que servirão como base para um cadastro mais realiza
 
 * Estado
 
@@ -102,4 +108,12 @@ nest g controller address --no-spec
 
 # Service
 nest g service address --no-spec
+```
+
+## Sistema de cache
+
+Com o objetivo de retuzir o tempo de busca, será criado um modo de armazena algumas informações no cache da memória de forma temporaria. Para isso será necessário instalar a seguinte library
+
+```bash
+npm install cache-manager 
 ```

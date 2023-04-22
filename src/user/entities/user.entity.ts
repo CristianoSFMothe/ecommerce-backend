@@ -1,8 +1,10 @@
 import { IsNotEmpty } from 'class-validator';
+import { AddressEntity } from 'src/address/entities/address.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -41,4 +43,7 @@ export class UserEntity {
 
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
+
+  @OneToMany(() => AddressEntity, (address) => address.user)
+  address?: AddressEntity;
 }

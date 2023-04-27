@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class InsertInState1682048288900 implements MigrationInterface {
+export class InsertInState1682554605995 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     queryRunner.query(`
             INSERT INTO state("id", "name", "uf") VALUES (1, 'Acre', 'AC');

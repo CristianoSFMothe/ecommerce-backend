@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class AlterTableState1682048210986 implements MigrationInterface {
+export class AlterTableState1682554277490 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     queryRunner.query(`
             ALTER TABLE state

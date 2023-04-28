@@ -157,4 +157,14 @@ nest g service auth --no-spec
 nest g controller auth --no-spec
 ```
 
+## JWT
+
+```bash
+npm install --save @nestjs/jwt passport-jwt
+
+npm install --save-dev @types/passport-jwt
+```
+
+
+
 

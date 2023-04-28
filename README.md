@@ -165,6 +165,8 @@ npm install --save @nestjs/jwt passport-jwt
 npm install --save-dev @types/passport-jwt
 ```
 
+### Auterando a tabela do usuário
 
-
-
+```bash
+npx typeorm migration:create ./src/migration/alter-table-user
+```

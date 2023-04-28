@@ -22,6 +22,7 @@ import { AuthModule } from './auth/auth.module';
 import { RolesGuard } from './guards/roles.guards';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtModule } from '@nestjs/jwt';
+import { AlterTableUser1682646827823 } from './migration/1682646827823-alter-table-user';
 @Module({
   imports: [
 ConfigModule.forRoot({
@@ -47,7 +48,8 @@ ConfigModule.forRoot({
         CreateTableAddress1682554267339,
         AlterTableState1682554277490,
         InsertInState1682554605995,
-        InsertInCity1682554612392
+        InsertInCity1682554612392,
+        AlterTableUser1682646827823
       ],
       migrationsRun: true,
     }),

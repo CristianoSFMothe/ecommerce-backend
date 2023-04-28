@@ -137,7 +137,6 @@ Para melhor desempenho e segurança o *Nest* trabalha com *Pipes* para geração
 ```bash
 npm i --save class-validator class-transformer
 ```
-
 # Autorização e Autenticação
 
 ```bash
@@ -147,6 +146,7 @@ npm install --save @nestjs/passport passport passport-local
 ```bash
 npm install --save-dev @types/passport-local
 ```
+
 ## Criação dos módulos
 
 ```bash
@@ -179,15 +179,15 @@ npx typeorm migration:create ./src/migration/alter-table-user
 npm run test src/user/__tests__/user.service.spec.ts
 ```
 
-* Teste Address Service - Sates
+* Teste State Service
 
 ```bash
 npm run test src/state/__test__/state.service.spec.ts
 ```
 
-* Teste Address Service - City
+* Teste Address Service
 
 ```bash
-npm run test src/city/__test__/city.service.spec.ts
+npm run test src/address/__teste__/address.service.spec.ts
 ```
 

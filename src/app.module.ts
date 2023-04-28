@@ -19,9 +19,12 @@ import { AlterTableState1682554277490 } from './migration/1682554277490-alter_ta
 import { InsertInState1682554605995 } from './migration/1682554605995-insert_in_state';
 import { InsertInCity1682554612392 } from './migration/1682554612392-insert_in_city';
 import { AuthModule } from './auth/auth.module';
+import { RolesGuard } from './guards/roles.guards';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtModule } from '@nestjs/jwt';
 @Module({
   imports: [
-    ConfigModule.forRoot({
+ConfigModule.forRoot({
       envFilePath: ['.env.development.local'],
     }),
     TypeOrmModule.forRoot({
@@ -54,8 +57,14 @@ import { AuthModule } from './auth/auth.module';
     AddressModule,
     CacheModule,
     AuthModule,
+    JwtModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
+  ],
 })
 export class AppModule {}

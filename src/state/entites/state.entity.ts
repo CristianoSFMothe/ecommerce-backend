@@ -16,12 +16,15 @@ export class StateEntity {
   @Column({ name: 'name', nullable: false })
   name: string;
 
+  @Column({ name: 'UF', nullable: false })
+  uf: string;
+
   @CreateDateColumn({ name: 'created_at' })
-  createAt: Date;
+  createdAt: Date;
 
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
   @OneToMany(() => CityEntity, (city) => city.state)
-  cities: CityEntity[];
+  cities?: CityEntity[];
 }

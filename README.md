@@ -170,3 +170,24 @@ npm install --save-dev @types/passport-jwt
 ```bash
 npx typeorm migration:create ./src/migration/alter-table-user
 ```
+
+# Test Services
+
+* Teste User Service
+
+```bash	
+npm run test src/user/__tests__/user.service.spec.ts
+```
+
+* Teste Address Service - Sates
+
+```bash
+npm run test src/state/__test__/state.service.spec.ts
+```
+
+* Teste Address Service - City
+
+```bash
+npm run test src/city/__test__/city.service.spec.ts
+```
+

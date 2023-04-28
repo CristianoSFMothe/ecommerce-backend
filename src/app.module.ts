@@ -18,6 +18,7 @@ import { CreateTableAddress1682554267339 } from './migration/1682554267339-creat
 import { AlterTableState1682554277490 } from './migration/1682554277490-alter_table_state';
 import { InsertInState1682554605995 } from './migration/1682554605995-insert_in_state';
 import { InsertInCity1682554612392 } from './migration/1682554612392-insert_in_city';
+import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -52,6 +53,7 @@ import { InsertInCity1682554612392 } from './migration/1682554612392-insert_in_c
     CityModule,
     AddressModule,
     CacheModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],

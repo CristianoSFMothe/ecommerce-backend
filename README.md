@@ -137,3 +137,24 @@ Para melhor desempenho e segurança o *Nest* trabalha com *Pipes* para geração
 ```bash
 npm i --save class-validator class-transformer
 ```
+
+# Autorização e Autenticação
+
+```bash
+npm install --save @nestjs/passport passport passport-local
+```
+
+```bash
+npm install --save-dev @types/passport-local
+```
+## Criação dos módulos
+
+```bash
+nest g module auth
+
+nest g service auth --no-spec
+
+nest g controller auth --no-spec
+```
+
+

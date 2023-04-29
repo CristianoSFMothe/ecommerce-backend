@@ -197,3 +197,12 @@ npm run test src/address/__teste__/address.service.spec.ts
 npm run test src/auth/__test__/auth.service.spec.ts
 ````
 
+## Criação das Migrations de Categorias e Produtos
+
+```bash
+# category
+npx typeorm migration:create ./src/migration/create-table-category
+
+# product
+npx typeorm migration:create ./src/migration/create-table-product
+```

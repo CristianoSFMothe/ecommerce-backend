@@ -191,3 +191,9 @@ npm run test src/state/__test__/state.service.spec.ts
 npm run test src/address/__teste__/address.service.spec.ts
 ```
 
+* Teste Auth Service
+
+```bash
+npm run test src/auth/__test__/auth.service.spec.ts
+````
+

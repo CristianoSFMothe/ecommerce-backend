@@ -55,7 +55,7 @@ npm install --save typeorm pg @nestjs/typeorm
 
 Não é interessante ter na nossa aplicação o `synchronize: true`, pois isso sempre quando houver uma ateração na estrutura da tabela, irá recriar ela toda novamente, podendo fazer com que se perga informações. Para isso usamos o `migration`.
 
-<details><summary>Primeiras Migrations</sumamary>
+<details><summary>Primeiras Migrations</summary>
 
 ```bash
 # Usuário

@@ -126,6 +126,7 @@ nest g controller address --no-spec
 # Service
 nest g service address --no-spec
 ```
+
 </details>
 
 ## Sistema de cache
@@ -192,10 +193,13 @@ Os módulos responsáveis por fazer a autenticação através do login no sistem
 <details><summary>Criação</summary>
 
 ```bash
+# Module Auth
 nest g module auth
 
+# Service Auth
 nest g service auth --no-spec
 
+# Controller Auth
 nest g controller auth --no-spec
 ```
 
@@ -218,6 +222,7 @@ Documentação: <a href="https://docs.nestjs.com/security/authentication#jwt-bas
 
 <details><summary>Instalação</summary>
 
+
 ```bash
 npm install --save @nestjs/jwt passport-jwt
 
@@ -228,11 +233,27 @@ npm install --save-dev @types/passport-jwt
 
 ### Auterando a tabela do usuário
 
+<details><summary>Alter table - migration</summary>
+
+
 ```bash
 npx typeorm migration:create ./src/migration/alter-table-user
 ```
 
+</details>
+
 # Test Services
+
+Para garantir a integridade do sistemas iremos realizar uns testes unitários
+
+ O módulo para testes unitários e de integração em aplicativos NestJS.
+ Documentação: <a href="https://docs.nestjs.com/fundamentals/testing" target="blank">tests</a>
+
+
+O teste unitário consiste em verificar o comportamento das menores unidades em sua aplicação. Tecnicamente, isso seria uma classe ou até mesmo um método de classe em línguas orientadas a objetos, e seria um procedimento ou função em línguas processuais e funcionais. Funcionalmente, pode ser um conjunto de classes intimamente relacionadas.
+
+
+<details><summary>test</summary>
 
 * Teste User Service
 
@@ -257,6 +278,8 @@ npm run test src/address/__teste__/address.service.spec.ts
 ```bash
 npm run test src/auth/__test__/auth.service.spec.ts
 ````
+
+</details>
 
 ## Criação das Migrations de Categorias e Produtos
 

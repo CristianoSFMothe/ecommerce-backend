@@ -1,4 +1,4 @@
-import { CategoryEntity } from 'src/category/entities/category.entity';
+import { CategoryEntity } from '../../category/entities/category.entity';
 import {
   PrimaryGeneratedColumn,
   Column,
@@ -11,7 +11,7 @@ import {
 
 @Entity()
 export class ProductEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('rowid')
   id: number;
 
   @Column({ name: 'name', nullable: false })
@@ -20,7 +20,7 @@ export class ProductEntity {
   @Column({ name: 'category_id', nullable: false })
   categoryId: number;
 
-  @Column({ name: 'price', nullable: false })
+  @Column({ name: 'price', type: 'decimal', nullable: false })
   price: number;
 
   @Column({ name: 'image', nullable: false })

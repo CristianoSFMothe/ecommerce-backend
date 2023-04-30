@@ -27,6 +27,8 @@ import { CreateTableCategory1682732905667 } from './migration/1682732905667-crea
 import { CreateTableProduct1682733262087 } from './migration/1682733262087-create-table-product';
 import { CategoryModule } from './category/category.module';
 import { ProductModule } from './product/product.module';
+import { CategoryEntity } from './category/entities/category.entity';
+import { ProductEntity } from './product/entities/product.entity';
 @Module({
   imports: [
 ConfigModule.forRoot({
@@ -44,6 +46,8 @@ ConfigModule.forRoot({
         AddressEntity,
         CityEntity,
         StateEntity,
+        CategoryEntity,
+        ProductEntity
       ],
       migrations: [
         CreateTableUser1682554242359,

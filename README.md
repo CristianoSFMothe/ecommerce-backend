@@ -262,19 +262,19 @@ npm run test src/user/__tests__/user.service.spec.ts
 * Teste State Service
 
 ```bash
-npm run test src/state/__test__/state.service.spec.ts
+npm run test src/state/__tests__/state.service.spec.ts
 ```
 
 * Teste Address Service
 
 ```bash
-npm run test src/address/__teste__/address.service.spec.ts
+npm run test src/address/__tests__/address.service.spec.ts
 ```
 
 * Teste Auth Service
 
 ```bash
-npm run test src/auth/__test__/auth.service.spec.ts
+npm run test src/auth/__tests__/auth.service.spec.ts
 ````
 
 </details>
@@ -314,7 +314,17 @@ nest g module product
 nest g service product --no-spec
 
 # Controller Product
-nest g service product --no-spec
+nest g controller product --no-spec
+```
+
+</details>
+
+<details><summary>Testes</summary>
+
+* Category Services
+
+```bash
+src\category\__tests__\category.service.spec.ts
 ```
 
 </details>

@@ -255,26 +255,28 @@ O teste unitário consiste em verificar o comportamento das menores unidades em 
 
 * Teste User Service
 
+> Para exexutar o teste automaticamente, sempre que houver uma alteração, deixar com a opção **:watch** depoois do **test**, caso contrário roda sem o **watch**
+
 ```bash
-npm run test src/user/__tests__/user.service.spec.ts
+npm run test:watch src/user/__tests__/user.service.spec.ts
 ```
 
 * Teste State Service
 
 ```bash
-npm run test src/state/__tests__/state.service.spec.ts
+npm run test:watch src/state/__tests__/state.service.spec.ts
 ```
 
 * Teste Address Service
 
 ```bash
-npm run test src/address/__tests__/address.service.spec.ts
+npm run test:watch src/address/__tests__/address.service.spec.ts
 ```
 
 * Teste Auth Service
 
 ```bash
-npm run test src/auth/__tests__/auth.service.spec.ts
+npm run test:watch src/auth/__tests__/auth.service.spec.ts
 ````
 
 </details>
@@ -324,7 +326,7 @@ nest g controller product --no-spec
 * Category Services
 
 ```bash
-src\category\__tests__\category.service.spec.ts
+npm run test:watch src/category/__tests__/category.service.spec.ts
 ```
 
 </details>

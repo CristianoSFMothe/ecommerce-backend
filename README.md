@@ -5,8 +5,9 @@
 Para dar maior segurança ao sistema, efitando assim que possa ter vazendo de senha, iremos resolver esse problema, armazenando a senha de uma cum forma criptografada.
 Porém, na criptografia simétrica/assimétrica sempre existe uma chave que serve para encriptar, como também descriptografar as informações dos usuários. Portanto, por meio desta chave é possível reverter a encriptação e obter as informações originais.
 
-image.png
+![image](https://user-images.githubusercontent.com/68359459/235333200-69e74dc4-d70f-4bab-845e-6710759e61ef.png)
 
+<details><summary>bcryp instalação</summary>
 * Instalação do *bcrypt*
 
 ```bash
@@ -16,9 +17,14 @@ npm i bcrypt
 # Tipagens
 npm i -D @types/bcrypt
 ```
+  
+</details>
 
 Docker é uma plataforma voltada para a criação e execução de containers. Diferente de uma VM, um container empacota somente o código, dependências e variáveis de ambiente necessárias para a execução de uma aplicação. Sendo assim, ao invés de termos uma infraestrutura onde cada VM tem seu próprio SO sendo responsável por uma aplicação diferente, temos uma infraestrutura onde, com apenas um sistema operacional e através do Docker, podemos gerenciar diversas aplicações.
 
+![image](https://user-images.githubusercontent.com/68359459/235333209-9d2ad54b-29f0-4ef4-ac10-e08db2bd5214.png)
+
+<details><summary>Docker instalação</summary>
 * Docker
 
 ```bash
@@ -31,10 +37,15 @@ docker pull postgres
 docker run --name ecommerce -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
 ```
 
-image.png
+</details>
+
 
 O módulo que fornece suporte para carregar configurações de aplicativos de diferentes fontes em NestJS.
 Documentação: <a href="https://docs.nestjs.com/techniques/configuration" target="blank">@nestjs/config</a>
+
+## Configura do NestJs Iniciais
+
+<details><summary>nestjs/cont instalação</summary>
 
 * Configuração
 
@@ -50,6 +61,8 @@ npm i --save @nestjs/config
 ```bash
 npm install --save typeorm pg @nestjs/typeorm
 ```
+
+</details>
 
 ## Migrations
 
@@ -176,7 +189,7 @@ Documentação: <a href="https://docs.nestjs.com/security/authentication#jwt-bas
 O módulo que fornece suporte para autenticação em aplicativos NestJS, incluindo OAuth, JWT e outros.
 Documentação: <a href="https://docs.nestjs.com/recipes/sql-typeorm" target="blank">passport e passport-local</a>
 
-<details><summary>Instação</summary>
+<details><summary>Instalação</summary>
 
 ```bash
 npm install --save @nestjs/passport passport passport-local
@@ -192,7 +205,7 @@ npm install --save-dev @types/passport-local
 
 Os módulos responsáveis por fazer a autenticação através do login no sistema, com o usuário previamente cadastrado.
 
-<details><summary>Criação</summary>
+<details><summary>Criação do Auth</summary>
 
 ```bash
 # Module Auth

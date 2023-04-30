@@ -23,8 +23,10 @@ import { RolesGuard } from './guards/roles.guards';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtModule } from '@nestjs/jwt';
 import { AlterTableUser1682646827823 } from './migration/1682646827823-alter-table-user';
-import { CreateTableProduct1682732905667 } from './migration/1682732905667-create-table-product';
-import { CreateTableCategory1682733262087 } from './migration/1682733262087-create-table-category';
+import { CreateTableCategory1682732905667 } from './migration/1682732905667-create-table-category';
+import { CreateTableProduct1682733262087 } from './migration/1682733262087-create-table-product';
+import { CategoryModule } from './category/category.module';
+import { ProductModule } from './product/product.module';
 @Module({
   imports: [
 ConfigModule.forRoot({
@@ -52,8 +54,8 @@ ConfigModule.forRoot({
         InsertInState1682554605995,
         InsertInCity1682554612392,
         AlterTableUser1682646827823,
-        CreateTableCategory1682733262087,
-        CreateTableProduct1682732905667
+        CreateTableCategory1682732905667,
+        CreateTableProduct1682733262087
       ],
       migrationsRun: true,
     }),
@@ -64,8 +66,9 @@ ConfigModule.forRoot({
     CacheModule,
     AuthModule,
     JwtModule,
+    CategoryModule,
+    ProductModule,
   ],
-  controllers: [],
   providers: [
     {
       provide: APP_GUARD,

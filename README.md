@@ -165,14 +165,15 @@ Documentação <a href="https://docs.nestjs.com/techniques/validation" target="b
 ```bash
 npm i --save class-validator class-transformer
 ```
+
 </details>
 
 # Autorização e Autenticação
 
-O módulo que fornece suporte para autenticação JWT em NestJS. 
+O módulo que fornece suporte para autenticação JWT em NestJS.
 Documentação: <a href="https://docs.nestjs.com/security/authentication#jwt-based-authentication" target="blank">Nestjs Auth</a>
 
-O módulo que fornece suporte para autenticação em aplicativos NestJS, incluindo OAuth, JWT e outros. 
+O módulo que fornece suporte para autenticação em aplicativos NestJS, incluindo OAuth, JWT e outros.
 Documentação: <a href="https://docs.nestjs.com/recipes/sql-typeorm" target="blank">passport e passport-local</a>
 
 <details><summary>Instação</summary>
@@ -184,6 +185,7 @@ npm install --save @nestjs/passport passport passport-local
 ```bash
 npm install --save-dev @types/passport-local
 ```
+
 </details>
 
 ## Criação dos módulos
@@ -217,11 +219,10 @@ O **JSON Web Token** é utilizado em dois principais cenários, quando queremos 
 **Autorização:** Este é o cenário mais comum para o uso do JWT. Depois que o usuário estiver autenticado, cada requisição subsequente incluirá o JWT, permitindo que o usuário acesse rotas, serviços e recursos permitidos com esse token.
 Troca de Informações: JSON Web Tokens são uma boa maneira de transmitir informações com segurança entre as partes. Como os JWTs podem ser assinados, por exemplo, usando pares de chaves pública e privada podemos garantir que os remetentes são quem dizem ser.
 
-O módulo que fornece suporte para autenticação JWT em NestJS. 
+O módulo que fornece suporte para autenticação JWT em NestJS.
 Documentação: <a href="https://docs.nestjs.com/security/authentication#jwt-based-authentication" target="blank">JWT</a>
 
 <details><summary>Instalação</summary>
-
 
 ```bash
 npm install --save @nestjs/jwt passport-jwt
@@ -234,7 +235,6 @@ npm install --save-dev @types/passport-jwt
 ### Auterando a tabela do usuário
 
 <details><summary>Alter table - migration</summary>
-
 
 ```bash
 npx typeorm migration:create ./src/migration/alter-table-user
@@ -249,15 +249,13 @@ Para garantir a integridade do sistemas iremos realizar uns testes unitários
  O módulo para testes unitários e de integração em aplicativos NestJS.
  Documentação: <a href="https://docs.nestjs.com/fundamentals/testing" target="blank">tests</a>
 
-
 O teste unitário consiste em verificar o comportamento das menores unidades em sua aplicação. Tecnicamente, isso seria uma classe ou até mesmo um método de classe em línguas orientadas a objetos, e seria um procedimento ou função em línguas processuais e funcionais. Funcionalmente, pode ser um conjunto de classes intimamente relacionadas.
-
 
 <details><summary>test</summary>
 
 * Teste User Service
 
-```bash	
+```bash
 npm run test src/user/__tests__/user.service.spec.ts
 ```
 
@@ -290,3 +288,33 @@ npx typeorm migration:create ./src/migration/create-table-category
 # product
 npx typeorm migration:create ./src/migration/create-table-product
 ```
+
+<details><summary>Modulo Categoria e Produtos</summary>
+
+* Categoria
+  
+```bash
+# Module Category
+nest g module category
+
+# Service Category
+nest g service category --no-spec
+
+# Controller Category
+nest g controller category --no-spec
+```
+
+* Produto
+  
+```bash
+# Module Product
+nest g module product
+
+# Service Product
+nest g service product --no-spec
+
+# Controller Product
+nest g service product --no-spec
+```
+
+</details>

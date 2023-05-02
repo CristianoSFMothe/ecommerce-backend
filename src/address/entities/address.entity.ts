@@ -1,4 +1,4 @@
-import { CityEntity } from '../../city/entites/city.entity';
+import { CityEntity } from '../../city/entities/city.entity';
 import { UserEntity } from '../../user/entities/user.entity';
 import {
   Column,

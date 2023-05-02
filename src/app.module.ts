@@ -8,8 +8,8 @@ import { StateModule } from './state/state.module';
 import { CityModule } from './city/city.module';
 import { AddressModule } from './address/address.module';
 import { AddressEntity } from './address/entities/address.entity';
-import { CityEntity } from './city/entites/city.entity';
-import { StateEntity } from './state/entites/state.entity';
+import { CityEntity } from './city/entities/city.entity';
+import { StateEntity } from './state/entities/state.entity';
 import { CacheModule } from './cache/cache.module';
 import { CreateTableUser1682554242359 } from './migration/1682554242359-create_table_user';
 import { CreateTableState1682554250628 } from './migration/1682554250628-create_table_state';
@@ -28,6 +28,7 @@ import { CreateTableProduct1682733262087 } from './migration/1682733262087-creat
 import { CategoryModule } from './category/category.module';
 import { ProductModule } from './product/product.module';
 import { CategoryEntity } from './category/entities/category.entity';
+import { InsertRootInUser1682873898501 } from './migration/1682873898501-insert-root-in-user';
 import { ProductEntity } from './product/entities/product.entity';
 @Module({
   imports: [
@@ -59,7 +60,8 @@ ConfigModule.forRoot({
         InsertInCity1682554612392,
         AlterTableUser1682646827823,
         CreateTableCategory1682732905667,
-        CreateTableProduct1682733262087
+        CreateTableProduct1682733262087,
+        InsertRootInUser1682873898501
       ],
       migrationsRun: true,
     }),

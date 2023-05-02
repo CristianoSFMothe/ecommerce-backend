@@ -1,5 +1,5 @@
 import { stateMock } from '../../state/__mocks__/state.mock';
-import { CityEntity } from '../entites/city.entity';
+import { CityEntity } from '../entities/city.entity';
 
 export const cityMock: CityEntity = {
   createdAt: new Date(),

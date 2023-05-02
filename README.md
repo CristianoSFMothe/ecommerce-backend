@@ -329,4 +329,16 @@ nest g controller product --no-spec
 npm run test:watch src/category/__tests__/category.service.spec.ts
 ```
 
+## Criando o Usuário Administrator
+
+```bash
+npx typeorm migration:create ./src/migration/insert-root-in-user
+```
+
+## Test Server
+
+```bash
+npm run test:watch src/product/__tests__/product.service.spec.ts
+```
+
 </details>

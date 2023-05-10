@@ -4,7 +4,7 @@ import { ProductService } from '../product.service';
 import { ProductEntity } from '../entities/product.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { productMock } from '../__mocks__/product.mock';
-import { createMock } from '../__mocks__/create-product.mock';
+import { createProductMock } from '../__mocks__/create-product.mock';
 import { CategoryService } from '../../category/category.service';
 import { categoryMock } from '../../category/__mocks__/category.mock';
 import { returnDeleteMock } from '../../__mocks__/return-delete.mock';
@@ -68,7 +68,7 @@ describe('ProductService', () => {
   });
 
   it('should return after insert in DB', async () => {
-    const product = await service.createProduct(createMock);
+    const product = await service.createProduct(createProductMock);
 
     expect(product).toEqual(productMock);
   });
@@ -97,5 +97,22 @@ describe('ProductService', () => {
     const productDelete = await service.deleteProduct(productMock.id);
 
     expect(productDelete).toEqual(returnDeleteMock);
+  });
+
+  it('should return product after update', async () => {
+    const productUpdate = await service.updateProduct(
+      createProductMock,
+      productMock.id,
+    );
+
+    expect(productUpdate).toEqual(productMock);
+  });
+
+  it('should error in update return', async () => {
+    jest.spyOn(productRepository, 'save').mockRejectedValue(new Error());
+
+    expect(
+      service.updateProduct(createProductMock, productMock.id),
+    ).rejects.toThrowError();
   });
 });

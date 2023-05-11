@@ -356,7 +356,7 @@ npm run test:watch src/product/__tests__/product.service.spec.ts
 
 </details>
 
-## Criando a tabela de Carinhos
+## Criando carrinho
 
 <details><summary>Criação do carrinho</summary>
 
@@ -373,4 +373,18 @@ nest g service cart
 # Controller
 nest g controller cart --no-spec
 ```
+
+</details>
+
+<details><summary>Carrinho do produto</summary>
+
+```bash
+# Migration
+npx typeorm migration:create ./src/migration/create-table-cart-product
+
+# Module
+nest g module cart-product
+
+```
+
 </details>

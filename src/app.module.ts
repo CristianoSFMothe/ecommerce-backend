@@ -33,6 +33,9 @@ import { ProductEntity } from './product/entities/product.entity';
 import { CreateTableCart1683767670404 } from './migration/1683767670404-create-table-cart';
 import { CartModule } from './cart/cart.module';
 import { CartEntity } from './cart/entities/cart.entity';
+import { CreateTableCartProduct1683770245874 } from './migration/1683770245874-create-table-cart-product';
+import { CartProductModule } from './cart-product/cart-product.module';
+import { CartProductEntity } from './cart-product/entities/cart-product.entity';
 @Module({
   imports: [
 ConfigModule.forRoot({
@@ -52,7 +55,8 @@ ConfigModule.forRoot({
         StateEntity,
         CategoryEntity,
         ProductEntity,
-        CartEntity
+        CartEntity,
+        CartProductEntity
       ],
       migrations: [
         CreateTableUser1682554242359,
@@ -67,6 +71,7 @@ ConfigModule.forRoot({
         CreateTableProduct1682733262087,
         InsertRootInUser1682873898501,
         CreateTableCart1683767670404,
+        CreateTableCartProduct1683770245874,
       ],
       migrationsRun: true,
     }),
@@ -80,6 +85,7 @@ ConfigModule.forRoot({
     CategoryModule,
     ProductModule,
     CartModule,
+    CartProductModule,
   ],
   providers: [
     {

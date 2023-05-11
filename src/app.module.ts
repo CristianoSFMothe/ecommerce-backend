@@ -30,6 +30,9 @@ import { ProductModule } from './product/product.module';
 import { CategoryEntity } from './category/entities/category.entity';
 import { InsertRootInUser1682873898501 } from './migration/1682873898501-insert-root-in-user';
 import { ProductEntity } from './product/entities/product.entity';
+import { CreateTableCart1683767670404 } from './migration/1683767670404-create-table-cart';
+import { CartModule } from './cart/cart.module';
+import { CartEntity } from './cart/entities/cart.entity';
 @Module({
   imports: [
 ConfigModule.forRoot({
@@ -48,7 +51,8 @@ ConfigModule.forRoot({
         CityEntity,
         StateEntity,
         CategoryEntity,
-        ProductEntity
+        ProductEntity,
+        CartEntity
       ],
       migrations: [
         CreateTableUser1682554242359,
@@ -61,7 +65,8 @@ ConfigModule.forRoot({
         AlterTableUser1682646827823,
         CreateTableCategory1682732905667,
         CreateTableProduct1682733262087,
-        InsertRootInUser1682873898501
+        InsertRootInUser1682873898501,
+        CreateTableCart1683767670404,
       ],
       migrationsRun: true,
     }),
@@ -74,6 +79,7 @@ ConfigModule.forRoot({
     JwtModule,
     CategoryModule,
     ProductModule,
+    CartModule,
   ],
   providers: [
     {

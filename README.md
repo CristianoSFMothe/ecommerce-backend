@@ -355,3 +355,22 @@ npm run test:watch src/product/__tests__/product.service.spec.ts
 ```
 
 </details>
+
+## Criando a tabela de Carinhos
+
+<details><summary>Criação do carrinho</summary>
+
+```bash
+# Migration
+npx typeorm migration:create ./src/migration/create-table-cart
+
+# Module
+nest g module cart
+
+# Service
+nest g service cart
+
+# Controller
+nest g controller cart --no-spec
+```
+</details>

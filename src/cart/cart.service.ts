@@ -4,6 +4,7 @@ import { CartEntity } from './entities/cart.entity';
 import { DeleteResult, Repository } from 'typeorm';
 import { InsertCartDto } from './dtos/insert-cart.dto';
 import { CartProductService } from '../cart-product/cart-product.service';
+import { UpdateCartDto } from './dtos/update-cart.dto';
 
 const LINE_AFFECTED = 1;
 
@@ -74,6 +75,27 @@ export class CartService {
     });
 
     await this.cartProductService.insertProductInCart(insertCart, cart);
+
+    return cart;
+  }
+
+  async deleteProductCart(
+    product: number,
+    userId: number,
+  ): Promise<DeleteResult> {
+    const cart = await this.findCartByUserId(userId);
+    return this.cartProductService.deleteProduct(product, cart.id);
+  }
+
+  async updateProductInCart(
+    updateCart: UpdateCartDto,
+    userId: number,
+  ): Promise<CartEntity> {
+    const cart = await this.findCartByUserId(userId).catch(async () => {
+      return this.createCart(userId);
+    });
+
+    await this.cartProductService.updateProductInCart(updateCart, cart);
 
     return cart;
   }

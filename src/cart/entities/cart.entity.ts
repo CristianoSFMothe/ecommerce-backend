@@ -18,6 +18,10 @@ export class CartEntity {
   @IsNotEmpty()
   userId: number;
 
+  @Column({ name: 'active', nullable: false })
+  @IsNotEmpty()
+  active: boolean;
+
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 

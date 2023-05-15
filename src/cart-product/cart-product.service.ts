@@ -5,7 +5,7 @@ import { CartEntity } from '../cart/entities/cart.entity';
 import { DeleteResult, Repository } from 'typeorm';
 import { CartProductEntity } from './entities/cart-product.entity';
 import { ProductService } from '../product/product.service';
-import { UpdateCartDto } from 'src/cart/dtos/update-cart.dto';
+import { UpdateCartDto } from '../cart/dtos/update-cart.dto';
 
 @Injectable()
 export class CartProductService {
@@ -83,7 +83,7 @@ export class CartProductService {
     });
   }
 
-  async deleteProduct(
+  async deleteProductCart(
     productId: number,
     cartId: number,
   ): Promise<DeleteResult> {

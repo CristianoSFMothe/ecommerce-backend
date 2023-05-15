@@ -391,3 +391,11 @@ nest g service cart-product
 ```
 
 </details>
+
+<details><summary>Teste</summary>
+
+```bash
+npm run test src/cart-product/__test__/cart-product.service.spec.ts
+```
+
+</details>

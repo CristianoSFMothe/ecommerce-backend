@@ -36,7 +36,7 @@ describe('CartController', () => {
     expect(cartService).toBeDefined();
   });
 
-  it('should cart Entity in insertProductInCart', async () => {
+  it('should cart Entity in insert product in cart', async () => {
     const cart = await controller.createCart(insertCartMock, userEntityMock.id);
 
     expect(cart).toEqual({
@@ -44,7 +44,7 @@ describe('CartController', () => {
     });
   });
 
-  it('should cart Entity in insertProductInCart', async () => {
+  it('should cart Entity in insert product in cart', async () => {
     const cart = await controller.findCartByUserId(userEntityMock.id);
 
     expect(cart).toEqual({
@@ -52,13 +52,13 @@ describe('CartController', () => {
     });
   });
 
-  it('should return DeleteResult in clearCart', async () => {
+  it('should return DeleteResult in clear cart', async () => {
     const cart = await controller.clearCart(userEntityMock.id);
 
     expect(cart).toEqual(returnDeleteMock);
   });
 
-  it('should cart Entity in updateProductInCart', async () => {
+  it('should cart Entity in update product in cart', async () => {
     const cart = await controller.updateProductInCart(
       updateCartMock,
       userEntityMock.id,

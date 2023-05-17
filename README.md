@@ -431,3 +431,74 @@ npm run test src/auth/__tests__/auth.controller.spec.ts
 ```
 
 </details>
+
+<details><summary>Teste Controller Cart </summary>
+
+```bash
+npm run test src/cart/__test__/cart.controller.spec.ts
+```
+
+</details>
+
+<details><summary>Teste Controller Category </summary>
+
+```bash
+npm run test src/category/__tests__/category.controller.spec.ts
+```
+
+</details>
+
+<details><summary>Teste Controller City </summary>
+
+```bash
+npm run test src/city/__tests__/city.controller.spec.ts
+```
+
+</details>
+
+<details><summary>Teste Controller Product </summary>
+
+```bash
+npm run test src/product/__tests__/product.controller.spec.ts
+```
+
+</details>
+
+
+## Sistema de Pagamento
+
+<details><summary>Migations</summary>
+
+```bash
+# status
+npx typeorm migration:create ./src/migration/create-table-status
+
+# Payment
+npx typeorm migration:create ./src/migration/create-table-payment
+```
+
+</details>
+
+<details><summary>Modules Payment Status</summary>
+
+```bash
+# payment status module
+nest g module payment-status
+
+# payment status service
+nest g service payment-status
+```
+
+</details>
+
+<details><summary>Modules Payment</summary>
+
+```bash
+# payment module
+nest g module payment
+
+# payment service
+nest g service payment
+```
+
+</details>

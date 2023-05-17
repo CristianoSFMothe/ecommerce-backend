@@ -2,6 +2,7 @@ import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateProductDto {
   @IsNumber()
+  @IsNotEmpty()
   categoryId: number;
 
   @IsString()

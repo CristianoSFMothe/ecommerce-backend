@@ -1,20 +1,19 @@
-/* eslint-disable prettier/prettier */
 import {
   Body,
   Controller,
   Get,
-  Post,
+  Param,
   Patch,
+  Post,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { CreateUserDto } from './dtos/createUser.dto';
-import { UserService } from './user.service';
-import { UserEntity } from './entities/user.entity';
-import { ReturnUserDto } from './dtos/returnUser.dto';
-import { Param } from '@nestjs/common';
-import { UpdatePasswordDto } from './dtos/update-password.dto';
 import { UserId } from '../decorators/user-id.decorator';
+import { CreateUserDto } from './dtos/createUser.dto';
+import { ReturnUserDto } from './dtos/returnUser.dto';
+import { UpdatePasswordDto } from './dtos/update-password.dto';
+import { UserEntity } from './entities/user.entity';
+import { UserService } from './user.service';
 import { Roles } from '../decorators/roles.decorators';
 import { UserType } from './enm/user-type.enum';
 
@@ -22,10 +21,10 @@ import { UserType } from './enm/user-type.enum';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post()
   @UsePipes(ValidationPipe)
-  async createUsers(@Body() createUser: CreateUserDto): Promise<UserEntity> {
-    return await this.userService.createUser(createUser);
+  @Post()
+  async createUser(@Body() createUser: CreateUserDto): Promise<UserEntity> {
+    return this.userService.createUser(createUser);
   }
 
   @Roles(UserType.Admin)
@@ -48,9 +47,9 @@ export class UserController {
   @Patch()
   @UsePipes(ValidationPipe)
   async updatePasswordUser(
+    @Body() updatePasswordDTO: UpdatePasswordDto,
     @UserId() userId: number,
-    @Body() updatePasswordDto: UpdatePasswordDto,
   ): Promise<UserEntity> {
-    return this.userService.updatePasswordUser(updatePasswordDto, userId);
+    return this.userService.updatePasswordUser(updatePasswordDTO, userId);
   }
 }

@@ -12,7 +12,6 @@ import {
 
 @Entity({ name: 'address' })
 export class AddressEntity {
-  [x: string]: any;
   @PrimaryGeneratedColumn('rowid')
   id: number;
 

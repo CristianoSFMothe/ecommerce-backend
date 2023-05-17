@@ -6,13 +6,8 @@ import { CityEntity } from './entities/city.entity';
 export class CityController {
   constructor(private readonly cityService: CityService) {}
 
-  @Get()
-  async getAllCity(): Promise<CityEntity[]> {
-    return this.cityService.getAllCity();
-  }
-
   @Get('/:stateId')
-  async getlAllCitiesByStateId(
+  async getAllCitiesByStateId(
     @Param('stateId') stateId: number,
   ): Promise<CityEntity[]> {
     return this.cityService.getAllCitiesByStateId(stateId);

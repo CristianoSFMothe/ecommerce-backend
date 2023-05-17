@@ -1,16 +1,16 @@
 import {
-  Injectable,
-  NotFoundException,
   BadGatewayException,
   BadRequestException,
+  Injectable,
+  NotFoundException,
 } from '@nestjs/common';
-import { UserEntity } from './entities/user.entity';
-import { CreateUserDto } from './dtos/createUser.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { UserType } from './enm/user-type.enum';
-import { UpdatePasswordDto } from './dtos/update-password.dto';
 import { createPasswordHashed, validatePassword } from '../utils/password';
+import { Repository } from 'typeorm';
+import { CreateUserDto } from './dtos/createUser.dto';
+import { UpdatePasswordDto } from './dtos/update-password.dto';
+import { UserEntity } from './entities/user.entity';
+import { UserType } from './enm/user-type.enum';
 
 @Injectable()
 export class UserService {
@@ -25,15 +25,14 @@ export class UserService {
     );
 
     if (user) {
-      throw new BadGatewayException('User and email already');
+      throw new BadGatewayException('email registered in system');
     }
-
-    const passwordHash = await createPasswordHashed(createUserDto.password);
+    const passwordHashed = await createPasswordHashed(createUserDto.password);
 
     return this.userRepository.save({
       ...createUserDto,
       typeUser: UserType.User,
-      password: passwordHash,
+      password: passwordHashed,
     });
   }
 
@@ -64,7 +63,7 @@ export class UserService {
     });
 
     if (!user) {
-      throw new NotFoundException('User Id Not Found');
+      throw new NotFoundException(`UserId: ${userId} Not Found`);
     }
 
     return user;
@@ -85,27 +84,27 @@ export class UserService {
   }
 
   async updatePasswordUser(
-    updatedPasswordDto: UpdatePasswordDto,
+    updatePasswordDTO: UpdatePasswordDto,
     userId: number,
   ): Promise<UserEntity> {
     const user = await this.findUserById(userId);
 
-    const passwordHash = await createPasswordHashed(
-      updatedPasswordDto.newPassword,
+    const passwordHashed = await createPasswordHashed(
+      updatePasswordDTO.newPassword,
     );
 
-    const isMathc = await validatePassword(
-      updatedPasswordDto.lastPassword,
-      user.password,
+    const isMatch = await validatePassword(
+      updatePasswordDTO.lastPassword,
+      user.password || '',
     );
 
-    if (!isMathc) {
-      throw new BadRequestException('Password or E-mail invalid.');
+    if (!isMatch) {
+      throw new BadRequestException('Last password invalid');
     }
 
     return this.userRepository.save({
       ...user,
-      password: passwordHash,
+      password: passwordHashed,
     });
   }
 }

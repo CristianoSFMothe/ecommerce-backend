@@ -1,12 +1,12 @@
 import {
-  Controller,
-  UsePipes,
-  Post,
-  ValidationPipe,
   Body,
+  Controller,
+  Post,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
-import { LoginDto } from './dtos/login.dto';
 import { AuthService } from './auth.service';
+import { LoginDto } from './dtos/login.dto';
 import { ReturnLogin } from './dtos/returnLogin.dto';
 
 @Controller('auth')

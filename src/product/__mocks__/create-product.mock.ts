@@ -3,7 +3,7 @@ import { CreateProductDto } from '../dtos/create-product.dto';
 
 export const createProductMock: CreateProductDto = {
   categoryId: categoryMock.id,
-  image: 'http://image1.jpg',
-  name: 'Name Product Mock',
-  price: 25,
+  image: 'http://image1.pg',
+  name: 'name mock product',
+  price: 25.0,
 };

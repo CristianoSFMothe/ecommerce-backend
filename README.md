@@ -408,12 +408,26 @@ npm run test src/cart/__test__/cart.service.spec.ts
 
 </details>
 
-</details>
-
 <details><summary>Teste Cov </summary>
 
 ```bash
 npm run test:cov
+```
+
+</details>
+
+<details><summary>Teste Controller Address </summary>
+
+```bash
+npm run test src/address/__tests__/address.controller.spec.ts
+```
+
+</details>
+
+<details><summary>Teste Controller Auth </summary>
+
+```bash
+npm run test src/address/__tests__/address.controller.spec.ts
 ```
 
 </details>

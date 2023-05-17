@@ -1,18 +1,17 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { InsertCartDto } from '../cart/dtos/insert-cart.dto';
+import { UpdateCartDto } from '../cart/dtos/update-cart.dto';
 import { CartEntity } from '../cart/entities/cart.entity';
+import { ProductService } from '../product/product.service';
 import { DeleteResult, Repository } from 'typeorm';
 import { CartProductEntity } from './entities/cart-product.entity';
-import { ProductService } from '../product/product.service';
-import { UpdateCartDto } from '../cart/dtos/update-cart.dto';
 
 @Injectable()
 export class CartProductService {
   constructor(
     @InjectRepository(CartProductEntity)
     private readonly cartProductRepository: Repository<CartProductEntity>,
-
     private readonly productService: ProductService,
   ) {}
 
@@ -87,9 +86,6 @@ export class CartProductService {
     productId: number,
     cartId: number,
   ): Promise<DeleteResult> {
-    return this.cartProductRepository.delete({
-      productId,
-      cartId,
-    });
+    return this.cartProductRepository.delete({ productId, cartId });
   }
 }

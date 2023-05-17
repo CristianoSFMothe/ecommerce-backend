@@ -1,15 +1,15 @@
-import { CartProductEntity } from '../../cart-product/entities/cart-product.entity';
 import { CategoryEntity } from '../../category/entities/category.entity';
 import {
-  PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
   Entity,
-  UpdateDateColumn,
-  ManyToOne,
   JoinColumn,
+  ManyToOne,
   OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
+import { CartProductEntity } from '../../cart-product/entities/cart-product.entity';
 
 @Entity({ name: 'product' })
 export class ProductEntity {
@@ -22,7 +22,7 @@ export class ProductEntity {
   @Column({ name: 'category_id', nullable: false })
   categoryId: number;
 
-  @Column({ name: 'price', type: 'decimal', nullable: false })
+  @Column({ name: 'price', nullable: false })
   price: number;
 
   @Column({ name: 'image', nullable: false })
@@ -34,13 +34,13 @@ export class ProductEntity {
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
+  @OneToMany(() => CartProductEntity, (cartProduct) => cartProduct.product)
+  cartProduct?: CartProductEntity[];
+
   @ManyToOne(
     () => CategoryEntity,
     (category: CategoryEntity) => category.products,
   )
   @JoinColumn({ name: 'category_id', referencedColumnName: 'id' })
   category?: CategoryEntity;
-
-  @OneToMany(() => CartProductEntity, (cartProduct) => cartProduct.product)
-  cartProduct?: CartProductEntity[];
 }

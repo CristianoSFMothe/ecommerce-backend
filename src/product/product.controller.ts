@@ -9,14 +9,14 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { Roles } from '../decorators/roles.decorators';
-import { UserType } from '../user/enm/user-type.enum';
+import { DeleteResult } from 'typeorm';
+import { CreateProductDto } from './dtos/create-product.dto';
+import { ProductEntity } from './entities/product.entity';
 import { ProductService } from './product.service';
 import { ReturnProduct } from './dtos/product.dto';
-import { ProductEntity } from './entities/product.entity';
-import { CreateProductDto } from './dtos/create-product.dto';
-import { DeleteResult } from 'typeorm';
 import { UpdateProductDto } from './dtos/update-product.dto';
+import { UserType } from '../user/enm/user-type.enum';
+import { Roles } from '../decorators/roles.decorators';
 
 @Roles(UserType.Admin, UserType.User)
 @Controller('product')

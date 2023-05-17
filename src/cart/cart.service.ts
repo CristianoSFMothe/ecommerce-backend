@@ -1,10 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CartEntity } from './entities/cart.entity';
+import { CartProductService } from '../cart-product/cart-product.service';
 import { DeleteResult, Repository } from 'typeorm';
 import { InsertCartDto } from './dtos/insert-cart.dto';
-import { CartProductService } from '../cart-product/cart-product.service';
 import { UpdateCartDto } from './dtos/update-cart.dto';
+import { CartEntity } from './entities/cart.entity';
 
 const LINE_AFFECTED = 1;
 
@@ -13,7 +13,6 @@ export class CartService {
   constructor(
     @InjectRepository(CartEntity)
     private readonly cartRepository: Repository<CartEntity>,
-
     private readonly cartProductService: CartProductService,
   ) {}
 
@@ -33,9 +32,9 @@ export class CartService {
 
   async findCartByUserId(
     userId: number,
-    isRelation?: boolean,
+    isRelations?: boolean,
   ): Promise<CartEntity> {
-    const relations = isRelation
+    const relations = isRelations
       ? {
           cartProduct: {
             product: true,
@@ -48,12 +47,11 @@ export class CartService {
         userId,
         active: true,
       },
-
       relations,
     });
 
     if (!cart) {
-      throw new NotFoundException('Cart action not found');
+      throw new NotFoundException(`Cart active not found`);
     }
 
     return cart;
@@ -67,35 +65,36 @@ export class CartService {
   }
 
   async insertProductInCart(
-    insertCart: InsertCartDto,
+    insertCartDTO: InsertCartDto,
     userId: number,
   ): Promise<CartEntity> {
     const cart = await this.findCartByUserId(userId).catch(async () => {
       return this.createCart(userId);
     });
 
-    await this.cartProductService.insertProductInCart(insertCart, cart);
+    await this.cartProductService.insertProductInCart(insertCartDTO, cart);
 
     return cart;
   }
 
   async deleteProductCart(
-    product: number,
+    productId: number,
     userId: number,
   ): Promise<DeleteResult> {
     const cart = await this.findCartByUserId(userId);
-    return this.cartProductService.deleteProductCart(product, cart.id);
+
+    return this.cartProductService.deleteProductCart(productId, cart.id);
   }
 
   async updateProductInCart(
-    updateCart: UpdateCartDto,
+    updateCartDTO: UpdateCartDto,
     userId: number,
   ): Promise<CartEntity> {
     const cart = await this.findCartByUserId(userId).catch(async () => {
       return this.createCart(userId);
     });
 
-    await this.cartProductService.updateProductInCart(updateCart, cart);
+    await this.cartProductService.updateProductInCart(updateCartDTO, cart);
 
     return cart;
   }

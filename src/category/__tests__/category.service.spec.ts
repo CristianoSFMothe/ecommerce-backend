@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CategoryService } from '../category.service';
-import { Repository } from 'typeorm';
-import { CategoryEntity } from '../entities/category.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { CategoryService } from '../category.service';
+import { CategoryEntity } from '../entities/category.entity';
 import { categoryMock } from '../__mocks__/category.mock';
 import { createCategoryMock } from '../__mocks__/create-category.mock';
 
@@ -14,13 +14,6 @@ describe('CategoryService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         CategoryService,
-        {
-          provide: getRepositoryToken(CategoryEntity),
-          useValue: {
-            find: jest.fn().mockResolvedValue([categoryMock]),
-            save: jest.fn().mockResolvedValue(categoryMock),
-          },
-        },
         {
           provide: getRepositoryToken(CategoryEntity),
           useValue: {
@@ -61,7 +54,7 @@ describe('CategoryService', () => {
     expect(service.findAllCategories()).rejects.toThrowError();
   });
 
-  it('should return erro if exist category name', async () => {
+  it('should return error if exist category name', async () => {
     expect(service.createCategory(createCategoryMock)).rejects.toThrowError();
   });
 
@@ -85,7 +78,7 @@ describe('CategoryService', () => {
     expect(category).toEqual(categoryMock);
   });
 
-  it('should error if category find by name empty', async () => {
+  it('should return error if category find by name empty', async () => {
     jest.spyOn(categoryRepository, 'findOne').mockResolvedValue(undefined);
 
     expect(

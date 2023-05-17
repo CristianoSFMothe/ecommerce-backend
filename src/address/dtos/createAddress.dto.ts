@@ -6,7 +6,6 @@ export class CreateAddressDto {
   complement: string;
 
   @IsInt()
-  @IsNotEmpty()
   numberAddress: number;
 
   @IsString()

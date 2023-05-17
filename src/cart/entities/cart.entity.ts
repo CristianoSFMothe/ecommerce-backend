@@ -1,4 +1,3 @@
-import { IsNotEmpty } from 'class-validator';
 import { CartProductEntity } from '../../cart-product/entities/cart-product.entity';
 import {
   Column,
@@ -15,11 +14,9 @@ export class CartEntity {
   id: number;
 
   @Column({ name: 'user_id', nullable: false })
-  @IsNotEmpty()
   userId: number;
 
   @Column({ name: 'active', nullable: false })
-  @IsNotEmpty()
   active: boolean;
 
   @CreateDateColumn({ name: 'created_at' })

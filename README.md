@@ -427,7 +427,7 @@ npm run test src/address/__tests__/address.controller.spec.ts
 <details><summary>Teste Controller Auth </summary>
 
 ```bash
-npm run test src/address/__tests__/address.controller.spec.ts
+npm run test src/auth/__tests__/auth.controller.spec.ts
 ```
 
 </details>

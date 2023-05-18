@@ -502,3 +502,39 @@ nest g service payment
 ```
 
 </details>
+
+<details><summary>Migration Order e Order Product</summary>
+
+```bash
+# Order
+npx typeorm migration:create ./src/migration/create-table-order
+
+# Product
+npx typeorm migration:create ./src/migration/create-table-order-product
+```
+
+</details>
+
+<details><summary>Module Order</summary>
+
+```bash
+# Module
+nest g module order
+
+# Product
+npx typeorm migration:create ./src/migration/create-table-order-product
+```
+
+</details>
+
+<details><summary>Module Order Product</summary>
+
+```bash
+# Module
+nest g module order-product
+
+# Product
+npx typeorm migration:create ./src/migration/create-table-order-product
+```
+
+</details>

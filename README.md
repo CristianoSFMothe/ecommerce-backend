@@ -544,3 +544,15 @@ npx typeorm migration:create ./src/migration/create-table-order-product
 ```
 
 </details>
+
+<details><summary>Migration Insert Status</summary>
+
+```bash
+# Migration Insert Status
+npx typeorm migration:create ./src/migration/insert-status
+
+# Migration Alter Table Payment
+npx typeorm migration:create ./src/migration/alter-table-payment
+```
+
+</details>

@@ -12,7 +12,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'palyment' })
+@Entity({ name: 'payment' })
 @TableInheritance({ column: { type: 'varchar', name: 'type' } })
 export abstract class PaymentEntity {
   @PrimaryGeneratedColumn('rowid')
@@ -37,7 +37,7 @@ export abstract class PaymentEntity {
   createdAt: Date;
 
   @UpdateDateColumn({ name: 'updated_at' })
-  updateddAt: Date;
+  updatedAt: Date;
 
   @OneToMany(() => OrderEntity, (order) => order.payment)
   orders?: OrderEntity[];
@@ -45,4 +45,16 @@ export abstract class PaymentEntity {
   @ManyToOne(() => PaymentStatusEntity, (payment) => payment.payments)
   @JoinColumn({ name: 'status_id', referencedColumnName: 'id' })
   paymentStatus?: PaymentStatusEntity;
+
+  constructor(
+    statusId: number,
+    price: number,
+    discount: number,
+    finalPrice: number,
+  ) {
+    this.statusId = statusId;
+    this.price = price;
+    this.discount = discount;
+    this.finalPrice = finalPrice;
+  }
 }

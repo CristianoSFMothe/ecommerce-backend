@@ -3,7 +3,7 @@ import { IsNumber, IsOptional, IsString } from 'class-validator';
 export class CreateOrderDto {
   @IsOptional()
   @IsNumber()
-  amountPayment?: number;
+  amountPayments?: number;
 
   @IsOptional()
   @IsString()
@@ -11,5 +11,5 @@ export class CreateOrderDto {
 
   @IsOptional()
   @IsString()
-  dataPayment?: string;
+  datePayment?: string;
 }

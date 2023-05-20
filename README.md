@@ -521,8 +521,14 @@ npx typeorm migration:create ./src/migration/create-table-order-product
 # Module
 nest g module order
 
-# Product
-npx typeorm migration:create ./src/migration/create-table-order-product
+# Service
+nest g service order
+
+# Controller
+nest g controller order
+
+# Test
+npm run test order
 ```
 
 </details>

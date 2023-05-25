@@ -1,5 +1,5 @@
-import { ProductEntity } from '../../product/entities/product.entity';
 import { OrderEntity } from '../../order/entities/order.entity';
+import { ProductEntity } from '../../product/entities/product.entity';
 import {
   Column,
   CreateDateColumn,
@@ -22,13 +22,10 @@ export class OrderProductEntity {
   productId: number;
 
   @Column({ name: 'amount', nullable: false })
-  amount: number;
+  amount: Date;
 
-  @Column({ name: 'date', nullable: false })
+  @Column({ name: 'price', nullable: false })
   price: number;
-
-  @Column({ name: 'payment_id', nullable: false })
-  paymentId: number;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
@@ -36,7 +33,7 @@ export class OrderProductEntity {
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
-  @ManyToMany(() => OrderEntity, (order) => order.orderProduct)
+  @ManyToMany(() => OrderEntity, (order) => order.ordersProduct)
   @JoinColumn({ name: 'order_id', referencedColumnName: 'id' })
   order?: OrderEntity;
 

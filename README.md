@@ -539,6 +539,9 @@ npm run test order
 # Module
 nest g module order-product
 
+# Service
+nest g service order-product
+
 # Product
 npx typeorm migration:create ./src/migration/create-table-order-product
 ```

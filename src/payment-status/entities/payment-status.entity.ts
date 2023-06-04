@@ -8,7 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'paymento_status' })
+@Entity({ name: 'payment_status' })
 export class PaymentStatusEntity {
   @PrimaryGeneratedColumn('rowid')
   id: number;
@@ -20,7 +20,7 @@ export class PaymentStatusEntity {
   createdAt: Date;
 
   @UpdateDateColumn({ name: 'updated_at' })
-  updateddAt: Date;
+  updatedAt: Date;
 
   @OneToMany(() => PaymentEntity, (payment) => payment.paymentStatus)
   payments?: PaymentEntity[];

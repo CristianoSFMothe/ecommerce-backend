@@ -17,15 +17,16 @@ export class PaymentService {
     private readonly paymentRepository: Repository<PaymentEntity>,
   ) {}
 
-  async createPayment(
-    createOrderDto: CreateOrderDto,
-    products: ProductEntity[],
-    cart: CartEntity,
-  ): Promise<PaymentEntity> {
-    // Buscando o producto
+  // Função para calcular o pagamento
+  generateFinalPrice(cart: CartEntity, products: ProductEntity[]) {
+    // Validado se encontrou o cart product ou se for igual a zero
+    if (!cart.cartProduct || cart.cartProduct.length === 0) {
+      return 0;
+    }
 
-    const finalPrice = cart.cartProduct
-      ?.map((cartProduct: CartProductEntity) => {
+    // Método para retornar o calculo dos produtos no carrinho
+    return cart.cartProduct
+      .map((cartProduct: CartProductEntity) => {
         const product = products.find(
           (product) => product.id === cartProduct.productId,
         );
@@ -38,7 +39,19 @@ export class PaymentService {
         return 0;
       })
       .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+  }
 
+  // Função para criação do pagamento
+  async createPayment(
+    createOrderDto: CreateOrderDto,
+    products: ProductEntity[],
+    cart: CartEntity,
+  ): Promise<PaymentEntity> {
+    // Buscando o produto
+
+    const finalPrice = this.generateFinalPrice(cart, products);
+
+    // Verificar a forma de pagamento se for no cartão de crédito
     if (createOrderDto.amountPayments) {
       const paymentCreditCard = new PaymentCreditCardEntity(
         PaymentType.Done,
@@ -48,6 +61,8 @@ export class PaymentService {
         createOrderDto,
       );
       return this.paymentRepository.save(paymentCreditCard);
+
+      // Verificar se o pagamento é no PIX
     } else if (createOrderDto.codePix && createOrderDto.datePayment) {
       const paymentPix = new PaymentPixEntity(
         PaymentType.Done,

@@ -16,6 +16,7 @@ export class CartService {
     private readonly cartProductService: CartProductService,
   ) {}
 
+  // Função para limpa o carrinho
   async clearCart(userId: number): Promise<DeleteResult> {
     const cart = await this.findCartByUserId(userId);
 
@@ -30,6 +31,7 @@ export class CartService {
     };
   }
 
+  // Função para lista o carinho pelo o Id du usuário
   async findCartByUserId(
     userId: number,
     isRelations?: boolean,
@@ -50,6 +52,7 @@ export class CartService {
       relations,
     });
 
+    // Verificando se o carrinho existe
     if (!cart) {
       throw new NotFoundException(`Cart active not found`);
     }
@@ -57,6 +60,7 @@ export class CartService {
     return cart;
   }
 
+  // Função para criação do carrinho
   async createCart(userId: number): Promise<CartEntity> {
     return this.cartRepository.save({
       active: true,
@@ -64,6 +68,7 @@ export class CartService {
     });
   }
 
+  // Função para inserir um produto no carrinho
   async insertProductInCart(
     insertCartDTO: InsertCartDto,
     userId: number,
@@ -72,11 +77,13 @@ export class CartService {
       return this.createCart(userId);
     });
 
+    // Inserindo produto no carrinho
     await this.cartProductService.insertProductInCart(insertCartDTO, cart);
 
     return cart;
   }
 
+  // Função para deletar um produto do carrinho
   async deleteProductCart(
     productId: number,
     userId: number,
@@ -86,6 +93,7 @@ export class CartService {
     return this.cartProductService.deleteProductCart(productId, cart.id);
   }
 
+  // Função para atualizar o produto no carrinho
   async updateProductInCart(
     updateCartDTO: UpdateCartDto,
     userId: number,

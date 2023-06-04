@@ -15,6 +15,7 @@ export class AddressService {
     private readonly cityService: CityService,
   ) {}
 
+  // Função para criar o endereço
   async createAddress(
     createAddressDto: CreateAddressDto,
     userId: number,
@@ -28,6 +29,7 @@ export class AddressService {
     });
   }
 
+  // Função para lista o endereço pelo Id do Usuário
   async findAddressByUserId(userId: number): Promise<AddressEntity[]> {
     const addresses = await this.addressRepository.find({
       where: {

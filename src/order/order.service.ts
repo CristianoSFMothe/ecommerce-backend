@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CartService } from '../cart/cart.service';
 import { CartEntity } from '../cart/entities/cart.entity';
@@ -23,6 +23,7 @@ export class OrderService {
     private readonly productService: ProductService,
   ) {}
 
+  // Função para salvar a order
   async saveOrder(
     createOrderDto: CreateOrderDto,
     userId: number,
@@ -36,6 +37,7 @@ export class OrderService {
     });
   }
 
+  // Função para criação da orde dos produtos usando o carrinho
   async createOrderProductUsingCart(
     cart: CartEntity,
     orderId: number,
@@ -54,6 +56,7 @@ export class OrderService {
     );
   }
 
+  // Função para criação da order
   async createOrder(
     createOrderDto: CreateOrderDto,
     userId: number,
@@ -69,12 +72,40 @@ export class OrderService {
       cart,
     );
 
+    // Salvando a Order
     const order = await this.saveOrder(createOrderDto, userId, payment);
 
+    // Criando o order product
     await this.createOrderProductUsingCart(cart, order.id, products);
 
-    // await this.cartService.clearCart(userId);
+    // Limpando o carinho
+    await this.cartService.clearCart(userId);
 
     return order;
+  }
+
+  // Função para buscar todas as ordes
+  async findOrdersByUserId(userId: number): Promise<OrderEntity[]> {
+    const orders = await this.orderRepository.find({
+      where: {
+        userId,
+      },
+      relations: {
+        address: true,
+        ordersProduct: {
+          product: true,
+        },
+        payment: {
+          paymentStatus: true,
+        },
+      },
+    });
+
+    // Verificar se a order não existe ou se for igual a zero
+    if (!orders || orders.length === 0) {
+      throw new NotFoundException('Order Not Found');
+    }
+
+    return orders;
   }
 }

@@ -15,9 +15,11 @@ export class CategoryService {
     private readonly categoryRepository: Repository<CategoryEntity>,
   ) {}
 
+  // Função para retornar todas as categorias
   async findAllCategories(): Promise<CategoryEntity[]> {
     const categories = await this.categoryRepository.find();
 
+    // Verifica se existe a categoria ou se ela é igual a zero
     if (!categories || categories.length === 0) {
       throw new NotFoundException('Categories empty');
     }
@@ -25,6 +27,7 @@ export class CategoryService {
     return categories;
   }
 
+  // Função para lista a categoria por Id
   async findCategoryById(categoryId: number): Promise<CategoryEntity> {
     const category = await this.categoryRepository.findOne({
       where: {
@@ -32,6 +35,7 @@ export class CategoryService {
       },
     });
 
+    // Verifica se a categoria existe
     if (!category) {
       throw new NotFoundException(`Category id: ${categoryId} not found`);
     }
@@ -39,6 +43,7 @@ export class CategoryService {
     return category;
   }
 
+  // Retorna a categoria pelo o nome
   async findCategoryByName(name: string): Promise<CategoryEntity> {
     const category = await this.categoryRepository.findOne({
       where: {
@@ -46,6 +51,7 @@ export class CategoryService {
       },
     });
 
+    // Verificar se a categoria existe
     if (!category) {
       throw new NotFoundException(`Category name ${name} not found`);
     }
@@ -53,6 +59,7 @@ export class CategoryService {
     return category;
   }
 
+  // Função para criação da categoria
   async createCategory(
     createCategory: CreateCategory,
   ): Promise<CategoryEntity> {
@@ -60,6 +67,7 @@ export class CategoryService {
       () => undefined,
     );
 
+    // Valida se já tem uma categoria com o nome criado
     if (category) {
       throw new BadRequestException(
         `Category name ${createCategory.name} exist`,

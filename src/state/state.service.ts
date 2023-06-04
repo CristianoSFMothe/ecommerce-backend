@@ -10,6 +10,7 @@ export class StateService {
     private readonly stateRepository: Repository<StateEntity>,
   ) {}
 
+  // Função para lista todos os Estados
   async getAllState(): Promise<StateEntity[]> {
     return this.stateRepository.find();
   }

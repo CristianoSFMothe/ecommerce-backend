@@ -10,6 +10,7 @@ export class OrderProductService {
     private readonly orderProductRepository: Repository<OrderProductEntity>,
   ) {}
 
+  // Função para criação da order do produtos
   async createOrderProduct(
     productId: number,
     orderId: number,

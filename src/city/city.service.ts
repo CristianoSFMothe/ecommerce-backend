@@ -13,6 +13,7 @@ export class CityService {
     private readonly cacheService: CacheService,
   ) {}
 
+  // Função para retorna todas as cidades
   async getAllCitiesByStateId(stateId: number): Promise<CityEntity[]> {
     return this.cacheService.getCache<CityEntity[]>(`state_${stateId}`, () =>
       this.cityRepository.find({
@@ -23,6 +24,7 @@ export class CityService {
     );
   }
 
+  // Função retornar a cidade pelo Id
   async findCityById(cityId: number): Promise<CityEntity> {
     const city = await this.cityRepository.findOne({
       where: {
@@ -30,6 +32,7 @@ export class CityService {
       },
     });
 
+    // Verificar se a cidade existe
     if (!city) {
       throw new NotFoundException(`CityId: ${cityId} not found.`);
     }

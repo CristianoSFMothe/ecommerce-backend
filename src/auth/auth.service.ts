@@ -15,16 +15,19 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
+  // Funão para login
   async login(loginDto: LoginDto): Promise<ReturnLogin> {
     const user: UserEntity | undefined = await this.userService
       .findUserByEmail(loginDto.email)
       .catch(() => undefined);
 
+    // Validação da senha
     const isMatch = await validatePassword(
       loginDto.password,
       user?.password || '',
     );
 
+    // Verificando a senha para validar
     if (!user || !isMatch) {
       throw new NotFoundException('Email or passord invalid');
     }

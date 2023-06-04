@@ -15,6 +15,7 @@ export class CartProductService {
     private readonly productService: ProductService,
   ) {}
 
+  // Função para verificar se existe produto no carrinho
   async verifyProductInCart(
     productId: number,
     cartId: number,
@@ -26,6 +27,7 @@ export class CartProductService {
       },
     });
 
+    // Validando se tem produto no carrinho
     if (!cartProduct) {
       throw new NotFoundException('Product not found in cart');
     }
@@ -33,6 +35,7 @@ export class CartProductService {
     return cartProduct;
   }
 
+  // Função para criação do produto no carrinho
   async createProductInCart(
     insertCartDTO: InsertCartDto,
     cartId: number,
@@ -44,17 +47,20 @@ export class CartProductService {
     });
   }
 
+  // Função para inserir produto no carrinho
   async insertProductInCart(
     insertCartDTO: InsertCartDto,
     cart: CartEntity,
   ): Promise<CartProductEntity> {
     await this.productService.findProductById(insertCartDTO.productId);
 
+    // Verificar o produto no carrinho
     const cartProduct = await this.verifyProductInCart(
       insertCartDTO.productId,
       cart.id,
     ).catch(() => undefined);
 
+    // Validar se existe produto no carrinho
     if (!cartProduct) {
       return this.createProductInCart(insertCartDTO, cart.id);
     }
@@ -65,6 +71,7 @@ export class CartProductService {
     });
   }
 
+  // Função para atualizar produto no carrinho
   async updateProductInCart(
     updateCartDTO: UpdateCartDto,
     cart: CartEntity,
@@ -82,6 +89,7 @@ export class CartProductService {
     });
   }
 
+  // Função para remover produto do carrinho
   async deleteProductCart(
     productId: number,
     cartId: number,

@@ -23,7 +23,6 @@ import { UserType } from '../user/enm/user-type.enum';
 export class CartController {
   constructor(private readonly cartService: CartService) {}
 
-  @UsePipes(ValidationPipe)
   @Post()
   async createCart(
     @Body() insertCart: InsertCartDto,
@@ -54,7 +53,6 @@ export class CartController {
     return this.cartService.deleteProductCart(productId, userId);
   }
 
-  @UsePipes(ValidationPipe)
   @Patch()
   async updateProductInCart(
     @Body() updateCartDTO: UpdateCartDto,

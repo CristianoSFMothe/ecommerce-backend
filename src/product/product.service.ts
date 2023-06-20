@@ -5,6 +5,7 @@ import { DeleteResult, In, Repository } from 'typeorm';
 import { CreateProductDto } from './dtos/create-product.dto';
 import { ProductEntity } from './entities/product.entity';
 import { UpdateProductDto } from './dtos/update-product.dto';
+import { HelperMessage } from 'src/healpers/messages/message.helper';
 
 @Injectable()
 export class ProductService {
@@ -32,7 +33,7 @@ export class ProductService {
 
     // Verifica se o produto existe e se é igual a zero
     if (!products || products.length === 0) {
-      throw new NotFoundException('Not found products');
+      throw new NotFoundException(HelperMessage.PRODUCT_NOT_FOUND);
     }
 
     return products;
@@ -57,7 +58,7 @@ export class ProductService {
 
     // Verifica se o produto existe
     if (!product) {
-      throw new NotFoundException(`Product id: ${productId} not found`);
+      throw new NotFoundException(HelperMessage.PRODUCT_NOT_FOUND);
     }
 
     return product;

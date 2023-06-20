@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CacheService } from '../cache/cache.service';
 import { Repository } from 'typeorm';
 import { CityEntity } from './entities/city.entity';
+import { HelperMessage } from 'src/healpers/messages/message.helper';
 
 @Injectable()
 export class CityService {
@@ -34,7 +35,7 @@ export class CityService {
 
     // Verificar se a cidade existe
     if (!city) {
-      throw new NotFoundException(`CityId: ${cityId} not found.`);
+      throw new NotFoundException(HelperMessage.CITY_NOT_FOUND);
     }
 
     return city;

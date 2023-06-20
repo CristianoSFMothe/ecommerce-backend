@@ -1,5 +1,4 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
 import { validatePassword } from '../utils/password';
 import { ReturnUserDto } from '../user/dtos/returnUser.dto';
 import { UserEntity } from '../user/entities/user.entity';
@@ -7,6 +6,8 @@ import { UserService } from '../user/user.service';
 import { LoginDto } from './dtos/login.dto';
 import { LoginPayload } from './dtos/loginPayload.dto';
 import { ReturnLogin } from './dtos/returnLogin.dto';
+import { JwtService } from '@nestjs/jwt';
+import { HelperMessage } from '../healpers/messages/message.helper';
 
 @Injectable()
 export class AuthService {
@@ -29,7 +30,7 @@ export class AuthService {
 
     // Verificando a senha para validar
     if (!user || !isMatch) {
-      throw new NotFoundException('Email or passord invalid');
+      throw new NotFoundException(HelperMessage.INVALID_PASSWORD_LENGTH);
     }
 
     return {

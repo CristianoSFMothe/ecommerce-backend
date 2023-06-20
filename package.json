@@ -87,7 +87,6 @@
       "!**/*.decorator.(t|j)s",
       "!**/*.guard.(t|j)s",
       "!**/*.controller.(t|j)s"
-
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"

@@ -5,6 +5,7 @@ import { DeleteResult, Repository } from 'typeorm';
 import { InsertCartDto } from './dtos/insert-cart.dto';
 import { UpdateCartDto } from './dtos/update-cart.dto';
 import { CartEntity } from './entities/cart.entity';
+import { HelperMessage } from '../healpers/messages/message.helper';
 
 const LINE_AFFECTED = 1;
 
@@ -54,7 +55,7 @@ export class CartService {
 
     // Verificando se o carrinho existe
     if (!cart) {
-      throw new NotFoundException(`Cart active not found`);
+      throw new NotFoundException(HelperMessage.CART_NOT_ACTIVE);
     }
 
     return cart;

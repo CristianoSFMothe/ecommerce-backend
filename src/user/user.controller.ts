@@ -21,7 +21,6 @@ import { UserType } from './enm/user-type.enum';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @UsePipes(ValidationPipe)
   @Post()
   async createUser(@Body() createUser: CreateUserDto): Promise<UserEntity> {
     return this.userService.createUser(createUser);
@@ -45,7 +44,6 @@ export class UserController {
 
   @Roles(UserType.Admin, UserType.User)
   @Patch()
-  @UsePipes(ValidationPipe)
   async updatePasswordUser(
     @Body() updatePasswordDTO: UpdatePasswordDto,
     @UserId() userId: number,

@@ -20,7 +20,6 @@ export class AddressController {
   constructor(private readonly addressService: AddressService) {}
 
   @Post()
-  @UsePipes(ValidationPipe)
   async createAddress(
     @Body() createAddressDto: CreateAddressDto,
     @UserId() userId: number,

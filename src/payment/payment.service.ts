@@ -9,6 +9,7 @@ import { Repository } from 'typeorm';
 import { PaymentPixEntity } from './entities/payment-pix.entity';
 import { PaymentEntity } from './entities/payment.entity';
 import { PaymentCreditCardEntity } from './entities/payment-credit.entity';
+import { HelperMessage } from 'src/healpers/messages/message.helper';
 
 @Injectable()
 export class PaymentService {
@@ -74,8 +75,6 @@ export class PaymentService {
       return this.paymentRepository.save(paymentPix);
     }
 
-    throw new BadRequestException(
-      'Amount Payments or code pix or date payment not found',
-    );
+    throw new BadRequestException(HelperMessage.PAYMENT_INVALID);
   }
 }

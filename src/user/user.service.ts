@@ -11,6 +11,7 @@ import { CreateUserDto } from './dtos/createUser.dto';
 import { UpdatePasswordDto } from './dtos/update-password.dto';
 import { UserEntity } from './entities/user.entity';
 import { UserType } from './enm/user-type.enum';
+import { HelperMessage } from 'src/healpers/messages/message.helper';
 
 @Injectable()
 export class UserService {
@@ -27,7 +28,7 @@ export class UserService {
 
     // Verfica o usuário
     if (user) {
-      throw new BadGatewayException('email registered in system');
+      throw new BadGatewayException(HelperMessage.EMAIL_AND_PASSWOR_INVALID);
     }
 
     // Converte a senha
@@ -71,7 +72,7 @@ export class UserService {
 
     // Verificar o usuário
     if (!user) {
-      throw new NotFoundException(`UserId: ${userId} Not Found`);
+      throw new NotFoundException(HelperMessage.USER_NOT_FOUND);
     }
 
     return user;
@@ -87,7 +88,7 @@ export class UserService {
 
     // Verifica se o usuário existe
     if (!user) {
-      throw new NotFoundException(`Email: ${email} Not Found`);
+      throw new NotFoundException(HelperMessage.USER_NOT_FOUND);
     }
 
     return user;
@@ -112,7 +113,7 @@ export class UserService {
 
     // Verifica se a senha existe
     if (!isMatch) {
-      throw new BadRequestException('Last password invalid');
+      throw new BadRequestException(HelperMessage.LAST_PASSWORD_INVALID);
     }
 
     return this.userRepository.save({

@@ -11,6 +11,7 @@ import { ProductService } from '../product/product.service';
 import { Repository } from 'typeorm';
 import { CreateOrderDto } from './dtos/create-order.dto';
 import { OrderEntity } from './entities/order.entity';
+import { HelperMessage } from '../healpers/messages/message.helper';
 
 @Injectable()
 export class OrderService {
@@ -103,7 +104,7 @@ export class OrderService {
 
     // Verificar se a order não existe ou se for igual a zero
     if (!orders || orders.length === 0) {
-      throw new NotFoundException('Order Not Found');
+      throw new NotFoundException(HelperMessage.ORDER_NOT_FOUND);
     }
 
     return orders;

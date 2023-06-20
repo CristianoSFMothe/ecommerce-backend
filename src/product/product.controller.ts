@@ -31,7 +31,6 @@ export class ProductController {
   }
 
   @Roles(UserType.Admin)
-  @UsePipes(ValidationPipe)
   @Post()
   async createProduct(
     @Body() createProduct: CreateProductDto,
@@ -48,7 +47,6 @@ export class ProductController {
   }
 
   @Roles(UserType.Admin)
-  @UsePipes(ValidationPipe)
   @Put('/:productId')
   async updateProduct(
     @Body() updateProduct: UpdateProductDto,

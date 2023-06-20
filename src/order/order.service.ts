@@ -24,7 +24,7 @@ export class OrderService {
     private readonly productService: ProductService,
   ) {}
 
-  // Função para salvar a order
+  // Função para salvar o pedido
   async saveOrder(
     createOrderDto: CreateOrderDto,
     userId: number,
@@ -38,7 +38,7 @@ export class OrderService {
     });
   }
 
-  // Função para criação da orde dos produtos usando o carrinho
+  // Função para criação dos pedidos dos produtos usando o carrinho
   async createOrderProductUsingCart(
     cart: CartEntity,
     orderId: number,
@@ -57,26 +57,30 @@ export class OrderService {
     );
   }
 
-  // Função para criação da order
+  // Função para criação do pedido
   async createOrder(
     createOrderDto: CreateOrderDto,
     userId: number,
   ): Promise<OrderEntity> {
+    // Buscando o carrinho pelo o userId
     const cart = await this.cartService.findCartByUserId(userId, true);
+
+    // Buscando todos os produtos
     const products = await this.productService.findAll(
       cart.cartProduct?.map((cartProduct) => cartProduct.productId),
     );
 
+    // Criando o pagamento
     const payment: PaymentEntity = await this.paymentService.createPayment(
       createOrderDto,
       products,
       cart,
     );
 
-    // Salvando a Order
+    // Salvando o pedido
     const order = await this.saveOrder(createOrderDto, userId, payment);
 
-    // Criando o order product
+    // Criando o pedido do produto usando o carrinho
     await this.createOrderProductUsingCart(cart, order.id, products);
 
     // Limpando o carinho
@@ -85,7 +89,7 @@ export class OrderService {
     return order;
   }
 
-  // Função para buscar todas as ordes
+  // Função para buscar todas os pedidos
   async findOrdersByUserId(userId: number): Promise<OrderEntity[]> {
     const orders = await this.orderRepository.find({
       where: {

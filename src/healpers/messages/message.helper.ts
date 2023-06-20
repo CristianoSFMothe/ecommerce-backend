@@ -20,6 +20,8 @@ const PRODUCT_NOT_FOUND = 'Producto não encontrado ou não existe.';
 
 const LAST_PASSWORD_INVALID = 'Última senha inválida';
 
+const PASSWORD_FALL = 'A senha inválida';
+
 export const HelperMessage = {
   PASSWORD_INCORRET,
   INVALID_PASSWORD_LENGTH,
@@ -31,4 +33,5 @@ export const HelperMessage = {
   PAYMENT_INVALID,
   PRODUCT_NOT_FOUND,
   LAST_PASSWORD_INVALID,
+  PASSWORD_FALL,
 };

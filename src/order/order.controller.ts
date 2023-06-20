@@ -1,11 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Post,
-  UsePipes,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { UserId } from '../decorators/user-id.decorator';
 import { CreateOrderDto } from './dtos/create-order.dto';
 import { OrderService } from './order.service';

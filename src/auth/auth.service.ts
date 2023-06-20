@@ -30,7 +30,7 @@ export class AuthService {
 
     // Verificando a senha para validar
     if (!user || !isMatch) {
-      throw new NotFoundException(HelperMessage.INVALID_PASSWORD_LENGTH);
+      throw new NotFoundException(HelperMessage.PASSWORD_FALL);
     }
 
     return {

@@ -13,7 +13,9 @@ import { ReturnAddressDto } from './dtos/returnAddress.dto';
 import { AddressEntity } from './entities/address.entity';
 import { Roles } from '../decorators/roles.decorators';
 import { UserType } from '../user/enm/user-type.enum';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Endereço')
 @Roles(UserType.User, UserType.Admin)
 @Controller('address')
 export class AddressController {

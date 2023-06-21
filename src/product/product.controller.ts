@@ -6,8 +6,6 @@ import {
   Param,
   Post,
   Put,
-  UsePipes,
-  ValidationPipe,
 } from '@nestjs/common';
 import { DeleteResult } from 'typeorm';
 import { CreateProductDto } from './dtos/create-product.dto';
@@ -17,7 +15,9 @@ import { ReturnProduct } from './dtos/product.dto';
 import { UpdateProductDto } from './dtos/update-product.dto';
 import { UserType } from '../user/enm/user-type.enum';
 import { Roles } from '../decorators/roles.decorators';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Produtos')
 @Roles(UserType.Admin, UserType.User)
 @Controller('product')
 export class ProductController {

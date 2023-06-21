@@ -6,8 +6,6 @@ import {
   Param,
   Patch,
   Post,
-  UsePipes,
-  ValidationPipe,
 } from '@nestjs/common';
 import { UserId } from '../decorators/user-id.decorator';
 import { DeleteResult } from 'typeorm';
@@ -17,7 +15,9 @@ import { ReturnCartDto } from './dtos/return-cart.dto';
 import { UpdateCartDto } from './dtos/update-cart.dto';
 import { Roles } from '../decorators/roles.decorators';
 import { UserType } from '../user/enm/user-type.enum';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Carrinho')
 @Roles(UserType.User, UserType.Admin)
 @Controller('cart')
 export class CartController {

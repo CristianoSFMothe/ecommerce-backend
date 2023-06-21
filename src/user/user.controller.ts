@@ -1,13 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Param,
-  Patch,
-  Post,
-  UsePipes,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { UserId } from '../decorators/user-id.decorator';
 import { CreateUserDto } from './dtos/createUser.dto';
 import { ReturnUserDto } from './dtos/returnUser.dto';
@@ -16,7 +7,9 @@ import { UserEntity } from './entities/user.entity';
 import { UserService } from './user.service';
 import { Roles } from '../decorators/roles.decorators';
 import { UserType } from './enm/user-type.enum';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Usuários')
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}

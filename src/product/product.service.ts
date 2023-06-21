@@ -5,7 +5,7 @@ import { DeleteResult, In, Repository } from 'typeorm';
 import { CreateProductDto } from './dtos/create-product.dto';
 import { ProductEntity } from './entities/product.entity';
 import { UpdateProductDto } from './dtos/update-product.dto';
-import { HelperMessage } from 'src/healpers/messages/message.helper';
+import { HelperMessage } from '../healpers/messages/message.helper';
 
 @Injectable()
 export class ProductService {

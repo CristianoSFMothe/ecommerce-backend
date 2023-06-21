@@ -11,7 +11,7 @@ import { CreateUserDto } from './dtos/createUser.dto';
 import { UpdatePasswordDto } from './dtos/update-password.dto';
 import { UserEntity } from './entities/user.entity';
 import { UserType } from './enm/user-type.enum';
-import { HelperMessage } from 'src/healpers/messages/message.helper';
+import { HelperMessage } from '../healpers/messages/message.helper';
 
 @Injectable()
 export class UserService {

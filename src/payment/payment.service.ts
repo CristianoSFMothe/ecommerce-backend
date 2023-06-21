@@ -9,7 +9,7 @@ import { Repository } from 'typeorm';
 import { PaymentPixEntity } from './entities/payment-pix.entity';
 import { PaymentEntity } from './entities/payment.entity';
 import { PaymentCreditCardEntity } from './entities/payment-credit.entity';
-import { HelperMessage } from 'src/healpers/messages/message.helper';
+import { HelperMessage } from '../healpers/messages/message.helper';
 
 @Injectable()
 export class PaymentService {

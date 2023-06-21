@@ -548,6 +548,7 @@ npx typeorm migration:create ./src/migration/create-table-order-product
 
 </details>
 
+
 <details><summary>Migration Insert Status</summary>
 
 ```bash
@@ -556,6 +557,24 @@ npx typeorm migration:create ./src/migration/insert-status
 
 # Migration Alter Table Payment
 npx typeorm migration:create ./src/migration/alter-table-payment
+```
+
+</details>
+
+<details><summary>Test</summary>
+
+```bash
+# Teste do service de pagamento
+npm run test src/payment/__test__/payment.service.spec.ts
+
+# Teste do controller de pedidos
+npm run test src/order/__test__/order.controller.spec.ts 
+
+# Teste do service de pedidos
+npm run test src/order/__test__/order.service.spec.ts
+
+# Teste do service de encomenda do produto
+npm run test src/order-product/__test__/order-product.service.spec.ts
 ```
 
 </details>

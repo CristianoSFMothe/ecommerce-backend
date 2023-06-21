@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CacheService } from '../cache/cache.service';
 import { Repository } from 'typeorm';
 import { CityEntity } from './entities/city.entity';
-import { HelperMessage } from 'src/healpers/messages/message.helper';
+import { HelperMessage } from '../healpers/messages/message.helper';
 
 @Injectable()
 export class CityService {

@@ -19,27 +19,33 @@ export class PaymentService {
   ) {}
 
   // Função para calcular o pagamento
-  generateFinalPrice(cart: CartEntity, products: ProductEntity[]) {
+  generateFinalPrice(cart: CartEntity, products: ProductEntity[]): number {
     // Validado se encontrou o cart product ou se for igual a zero
     if (!cart.cartProduct || cart.cartProduct.length === 0) {
       return 0;
     }
 
     // Método para retornar o calculo dos produtos no carrinho
-    return cart.cartProduct
-      .map((cartProduct: CartProductEntity) => {
-        const product = products.find(
-          (product) => product.id === cartProduct.productId,
-        );
+    return Number(
+      cart.cartProduct
+        .map((cartProduct: CartProductEntity) => {
+          const product = products.find(
+            (product) => product.id === cartProduct.productId,
+          );
+          if (product) {
+            return cartProduct.amount * product.price;
+          }
 
-        // Se encontrar o produto realiza o calculo
-        if (product) {
-          return cartProduct.amount * product.price;
-        }
+          // Se encontrar o produto realiza o calculo
+          if (product) {
+            return cartProduct.amount * product.price;
+          }
 
-        return 0;
-      })
-      .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+          return 0;
+        })
+        .reduce((accumulador, currentValue) => accumulador + currentValue, 0)
+        .toFixed(2),
+    );
   }
 
   // Função para criação do pagamento

@@ -22,6 +22,10 @@ export class UserService {
 
   // Função para criar o usuário
   async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
+    const cpf = await this.findUserByCpf(createUserDto.cpf).catch(
+      () => undefined,
+    );
+
     const user = await this.findUserByEmail(createUserDto.email).catch(
       () => undefined,
     );
@@ -29,6 +33,10 @@ export class UserService {
     // Verfica o usuário
     if (user) {
       throw new BadGatewayException(HelperMessage.EMAIL_AND_PASSWOR_INVALID);
+    }
+
+    if (cpf) {
+      throw new BadGatewayException(HelperMessage.CPF_EXIST);
     }
 
     // Converte a senha
@@ -89,6 +97,21 @@ export class UserService {
     // Verifica se o usuário existe
     if (!user) {
       throw new NotFoundException(HelperMessage.USER_NOT_FOUND);
+    }
+
+    return user;
+  }
+  // Função para lista o usuário pelo o e-mail
+  async findUserByCpf(cpf: string): Promise<UserEntity> {
+    const user = await this.userRepository.findOne({
+      where: {
+        cpf,
+      },
+    });
+
+    // Verifica se o usuário existe
+    if (!user) {
+      throw new NotFoundException(HelperMessage.CPF_EXIST);
     }
 
     return user;

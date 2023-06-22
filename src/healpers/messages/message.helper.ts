@@ -22,6 +22,8 @@ const LAST_PASSWORD_INVALID = 'Última senha inválida';
 
 const PASSWORD_FALL = 'A senha inválida';
 
+const CPF_EXIST = 'CPF já cadastrado no sistema';
+
 export const HelperMessage = {
   PASSWORD_INCORRET,
   INVALID_PASSWORD_LENGTH,
@@ -34,4 +36,5 @@ export const HelperMessage = {
   PRODUCT_NOT_FOUND,
   LAST_PASSWORD_INVALID,
   PASSWORD_FALL,
+  CPF_EXIST,
 };

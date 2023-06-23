@@ -90,10 +90,14 @@ export class OrderService {
   }
 
   // Função para buscar todas os pedidos
-  async findOrdersByUserId(userId: number): Promise<OrderEntity[]> {
+  async findOrdersByUserId(
+    userId?: number,
+    orderId?: number,
+  ): Promise<OrderEntity[]> {
     const orders = await this.orderRepository.find({
       where: {
         userId,
+        id: orderId,
       },
       relations: {
         address: true,

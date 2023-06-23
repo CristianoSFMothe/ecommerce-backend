@@ -21,7 +21,7 @@ import { OrderProductModule } from './order-product/order-product.module';
 import { OrderModule } from './order/order.module';
 @Module({
   imports: [
-ConfigModule.forRoot({
+    ConfigModule.forRoot({
       envFilePath: ['.env.development.local'],
     }),
     TypeOrmModule.forRoot({
@@ -34,6 +34,7 @@ ConfigModule.forRoot({
       entities: [`${__dirname}/**/*.entity{.js,.ts}`],
       migrations: [`${__dirname}/migration/{.ts,*.js}`],
       migrationsRun: true,
+      logging: true,
     }),
     UserModule,
     StateModule,

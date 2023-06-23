@@ -576,6 +576,9 @@ npm run test src/order/__test__/order.service.spec.ts
 # Teste do service de encomenda do produto
 npm run test src/order-product/__test__/order-product.service.spec.ts
 
+# Teste do controller do User
+npm run test src/user/__tests__/user.controller.spec.ts
+
 ```
 
 </details>

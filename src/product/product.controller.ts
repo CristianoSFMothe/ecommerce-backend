@@ -11,7 +11,7 @@ import { DeleteResult } from 'typeorm';
 import { CreateProductDto } from './dtos/create-product.dto';
 import { ProductEntity } from './entities/product.entity';
 import { ProductService } from './product.service';
-import { ReturnProduct } from './dtos/product.dto';
+import { ReturnProduct } from './dtos/return-product.dto';
 import { UpdateProductDto } from './dtos/update-product.dto';
 import { UserType } from '../user/enm/user-type.enum';
 import { Roles } from '../decorators/roles.decorators';
@@ -25,7 +25,7 @@ export class ProductController {
 
   @Get()
   async findAll(): Promise<ReturnProduct[]> {
-    return (await this.productService.findAll()).map(
+    return (await this.productService.findAll([], true)).map(
       (product) => new ReturnProduct(product),
     );
   }

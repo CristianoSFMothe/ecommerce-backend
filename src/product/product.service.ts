@@ -17,19 +17,31 @@ export class ProductService {
   ) {}
 
   // Função para retorna todos os produtos
-  async findAll(productId?: number[]): Promise<ProductEntity[]> {
-    let findOption = {};
+  async findAll(
+    productId?: number[],
+    isFindRelations?: boolean,
+  ): Promise<ProductEntity[]> {
+    let findOptions = {};
 
     // Verficar se o produto existe ou se é menor que zero
     if (productId && productId.length > 0) {
-      findOption = {
+      findOptions = {
         where: {
           id: In(productId),
         },
       };
     }
 
-    const products = await this.productRepository.find(findOption);
+    if (isFindRelations) {
+      findOptions = {
+        ...findOptions,
+        relations: {
+          category: true,
+        },
+      };
+    }
+
+    const products = await this.productRepository.find(findOptions);
 
     // Verifica se o produto existe e se é igual a zero
     if (!products || products.length === 0) {

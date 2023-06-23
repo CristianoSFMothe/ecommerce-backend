@@ -4,8 +4,8 @@ import { CreateOrderDto } from './dtos/create-order.dto';
 import { OrderService } from './order.service';
 import { OrderEntity } from './entities/order.entity';
 import { ApiTags } from '@nestjs/swagger';
-import { Roles } from 'src/decorators/roles.decorators';
-import { UserType } from 'src/user/enm/user-type.enum';
+import { Roles } from '../decorators/roles.decorators';
+import { UserType } from '../user/enm/user-type.enum';
 import { ReturnOrderDto } from './dtos/return-order.dto';
 
 @ApiTags('Pedidos')
@@ -29,8 +29,8 @@ export class OrderController {
 
   @Get('/:all')
   @Roles(UserType.Admin)
-  async findAllAllOrders(): Promise<ReturnOrderDto[]> {
-    return (await this.orderService.findAllAllOrders()).map(
+  async findAllOrders(): Promise<ReturnOrderDto[]> {
+    return (await this.orderService.findAllOrders()).map(
       (order) => new ReturnOrderDto(order),
     );
   }

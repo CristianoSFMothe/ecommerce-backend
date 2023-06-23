@@ -113,4 +113,19 @@ export class OrderService {
 
     return orders;
   }
+
+  // Função para retornar todas os pedidos
+  public async findAllAllOrders(): Promise<OrderEntity[]> {
+    const orders = await this.orderRepository.find({
+      relations: {
+        user: true,
+      },
+    });
+
+    if (!orders || orders.length === 0) {
+      throw new NotFoundException(HelperMessage.ORDER_NOT_FOUND);
+    }
+
+    return orders;
+  }
 }

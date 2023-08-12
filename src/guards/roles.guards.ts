@@ -1,8 +1,8 @@
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
-import { LoginPayload } from '../auth/dtos/loginPayload.dto';
-import { UserType } from '../user/enm/user-type.enum';
+import { LoginPayload } from '../models/auth/dtos/loginPayload.dto';
+import { UserType } from '../models/user/enm/user-type.enum';
 import { ROLES_KEY } from '../decorators/roles.decorators';
 
 @Injectable()

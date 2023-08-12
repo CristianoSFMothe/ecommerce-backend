@@ -5,7 +5,7 @@ export class InsertRootInUser1682873898501 implements MigrationInterface {
     queryRunner.query(`
     INSERT INTO public."user"(
         name, email, cpf, type_user, phone, password)
-        VALUES ('root', 'root@root.com', '12345678901', 2, '31925325252', '$2b$10$BhaMKrzUdPJFaHLcdvls7.lFMHojH9/sG/jwrp.Is0YXIlpBe4gI.');
+        VALUES ('admin', 'admin@admin.com', '12345678901', 2, '31925325252', '$2b$10$nVTrxcM59M0M8PWPG4h/8eoIOng.XzIUTwn8fzBgVBsBbAnOxe3Ce');
     `);
   }
 

@@ -34,7 +34,7 @@ docker pull postgres
 * Instancia do Docker
 
 ```bash
-docker run --name ecommerce -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
+docker run --name ecommerce -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -d postgres
 ```
 
 </details>

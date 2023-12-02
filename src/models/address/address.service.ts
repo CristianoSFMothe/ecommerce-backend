@@ -11,8 +11,10 @@ export class AddressService {
     private readonly addressRepository: Repository<AddressEntity>,
   ) {}
 
-  async createAddress(createAddressDto: CreateAddressDto, userId: number) {
-    console.log('createAddressDto', createAddressDto);
+  public async createAddress(
+    createAddressDto: CreateAddressDto,
+    userId: number,
+  ) {
     return this.addressRepository.save({
       ...createAddressDto,
       userId,

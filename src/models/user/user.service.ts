@@ -1,5 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateUserDto } from './dtos/createUser.dto';
 import { hash } from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -14,6 +17,20 @@ export class UserService {
   ) {}
 
   public async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
+    const emailExisting = await this.findUserByEmail(createUserDto.email).catch(
+      () => undefined,
+    );
+
+    const cpfExisting = await this.findUserByCpf(createUserDto.cpf).catch(
+      () => undefined,
+    );
+
+    if (emailExisting || cpfExisting) {
+      throw new BadRequestException(
+        'An error occurred during registration. Please try again.',
+      );
+    }
+
     const saltOrRounds = 10;
 
     const passwordHashed = await hash(createUserDto.password, saltOrRounds);
@@ -52,6 +69,20 @@ export class UserService {
 
     if (!user) {
       throw new NotFoundException('E-mail No Found');
+    }
+
+    return user;
+  }
+
+  public async findUserByCpf(cpf: string): Promise<UserEntity> {
+    const user = await this.userRepository.findOne({
+      where: {
+        cpf,
+      },
+    });
+
+    if (!user) {
+      throw new NotFoundException('Invalid CPF. Please check and try again.');
     }
 
     return user;

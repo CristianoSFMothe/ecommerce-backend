@@ -39,7 +39,6 @@ docker run --name ecommerce -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -d postg
 
 </details>
 
-
 O módulo que fornece suporte para carregar configurações de aplicativos de diferentes fontes em NestJS.
 Documentação: <a href="https://docs.nestjs.com/techniques/configuration" target="blank">@nestjs/config</a>
 
@@ -464,7 +463,6 @@ npm run test src/product/__tests__/product.controller.spec.ts
 
 </details>
 
-
 ## Sistema de Pagamento
 
 <details><summary>Migations</summary>
@@ -547,7 +545,6 @@ npx typeorm migration:create ./src/migration/create-table-order-product
 ```
 
 </details>
-
 
 <details><summary>Migration Insert Status</summary>
 

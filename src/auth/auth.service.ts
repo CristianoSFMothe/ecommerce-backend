@@ -5,7 +5,7 @@ import { UserService } from '../models/user/user.service';
 import { compare } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { ReturnLogin } from './dtos/returnLogin.dto';
-import { ReturnUserDto } from 'src/models/user/dtos/returnUser.dto';
+import { ReturnUserDto } from '../models/user/dtos/returnUser.dto';
 import { LoginPayload } from './dtos/loginPayload.dto';
 
 @Injectable()

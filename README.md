@@ -108,10 +108,10 @@ Criação de módulos que servirão como base para um cadastro mais realiza
 nest g module state
 
 # Controller
-nest g controller state --no-spec
+nest g controller state 
 
 # Service
-nest g service state --no-spec
+nest g service state 
 ```
 
 * Cidade
@@ -121,10 +121,10 @@ nest g service state --no-spec
 nest g module city
 
 # Controller
-nest g controller city --no-spec
+nest g controller city 
 
 # Service
-nest g service city --no-spec
+nest g service city 
 ```
 
 * Endereço
@@ -134,10 +134,10 @@ nest g service city --no-spec
 nest g module address
 
 # Controller
-nest g controller address --no-spec
+nest g controller address 
 
 # Service
-nest g service address --no-spec
+nest g service address 
 ```
 
 </details>
@@ -161,7 +161,7 @@ Para pode utilizar o sistema de cache de forma global
 nest g module cache
 
 # Service
- nest g service cache --no-spec
+ nest g service cache 
  ```
 
 </details>
@@ -212,10 +212,10 @@ Os módulos responsáveis por fazer a autenticação através do login no sistem
 nest g module auth
 
 # Service Auth
-nest g service auth --no-spec
+nest g service auth 
 
 # Controller Auth
-nest g controller auth --no-spec
+nest g controller auth 
 ```
 
 </details>
@@ -271,7 +271,7 @@ O teste unitário consiste em verificar o comportamento das menores unidades em 
 > Para exexutar o teste automaticamente, sempre que houver uma alteração, deixar com a opção **:watch** depoois do **test**, caso contrário roda sem o **watch**
 
 ```bash
-npm run test:watch src/user/__tests__/user.service.spec.ts
+npm run test src/models/user/__teste__/user.service.spec.ts
 ```
 
 * Teste State Service
@@ -313,10 +313,10 @@ npx typeorm migration:create ./src/migration/create-table-product
 nest g module category
 
 # Service Category
-nest g service category --no-spec
+nest g service category 
 
 # Controller Category
-nest g controller category --no-spec
+nest g controller category 
 ```
 
 * Produto
@@ -326,10 +326,10 @@ nest g controller category --no-spec
 nest g module product
 
 # Service Product
-nest g service product --no-spec
+nest g service product 
 
 # Controller Product
-nest g controller product --no-spec
+nest g controller product 
 ```
 
 </details>
@@ -371,7 +371,7 @@ nest g module cart
 nest g service cart
 
 # Controller
-nest g controller cart --no-spec
+nest g controller cart 
 ```
 
 </details>

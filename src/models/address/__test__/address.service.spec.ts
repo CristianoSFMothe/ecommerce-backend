@@ -4,8 +4,8 @@ import { Repository } from 'typeorm';
 import { AddressEntity } from '../entities/address.entity';
 import { UserService } from '../../../models/user/user.service';
 import { CityService } from '../../../models/city/city.service';
-import { userEntityMock } from '../../../models/user/__mock__/user.mock';
-import { cityMock } from '../../../models/city/__mock__/city.mock';
+import { userEntityMock } from '../../../models/user/__mocks__/user.mock';
+import { cityMock } from '../../../models/city/__mocks__/city.mock';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { addressMock } from '../__mocks__/address.mock';
 import { createAddressMock } from '../__mocks__/create-address.mock';
@@ -36,6 +36,7 @@ describe('AddressService', () => {
           provide: getRepositoryToken(AddressEntity),
           useValue: {
             save: jest.fn().mockResolvedValue(addressMock),
+            find: jest.fn().mockResolvedValue([addressMock]),
           },
         },
       ],
@@ -78,6 +79,20 @@ describe('AddressService', () => {
 
     expect(
       service.createAddress(createAddressMock, userEntityMock.id),
+    ).rejects.toThrowError();
+  });
+
+  it('should return all addresses to user', async () => {
+    const addresses = await service.findAddressByUserId(userEntityMock.id);
+
+    expect(addresses).toEqual([addressMock]);
+  });
+
+  it('should return not found if not address registred', async () => {
+    jest.spyOn(addressRepository, 'find').mockResolvedValue(undefined);
+
+    expect(
+      service.findAddressByUserId(userEntityMock.id),
     ).rejects.toThrowError();
   });
 });

@@ -104,13 +104,13 @@ Criação de módulos que servirão como base para um cadastro mais realiza
 
 ```bash
 # Modulo
-nest g module state
+nest g module models/state
 
 # Controller
-nest g controller state
+nest g controller models/state
 
 # Service
-nest g service state
+nest g service models/state
 ```
 
 - Cidade
@@ -130,13 +130,13 @@ nest g service city
 
 ```bash
 # Modulo
-nest g module address
+nest g module models/address
 
 # Controller
-nest g controller address
+nest g controller models/address
 
 # Service
-nest g service address
+nest g service models/address
 ```
 
 </details>
@@ -282,7 +282,7 @@ npm run test:watch src/models/state/__test__/state.service.spec.ts
 - Teste Address Service
 
 ```bash
-npm run test:watch src/address/__tests__/address.service.spec.ts
+npm run test:watch src/models/address/__tests__/address.service.spec.ts
 ```
 
 - Teste Auth Service
@@ -309,26 +309,26 @@ npx typeorm migration:create ./src/migration/create-table-product
 
 ```bash
 # Module Category
-nest g module category
+nest g module models/category
 
 # Service Category
-nest g service category
+nest g service models/category
 
 # Controller Category
-nest g controller category
+nest g controller models/category
 ```
 
 - Produto
 
 ```bash
 # Module Product
-nest g module product
+nest g module models/product
 
 # Service Product
-nest g service product
+nest g service models/product
 
 # Controller Product
-nest g controller product
+nest g controller models/product
 ```
 
 </details>

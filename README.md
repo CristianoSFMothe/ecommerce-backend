@@ -271,13 +271,13 @@ O teste unitário consiste em verificar o comportamento das menores unidades em 
 > Para exexutar o teste automaticamente, sempre que houver uma alteração, deixar com a opção **:watch** depoois do **test**, caso contrário roda sem o **watch**
 
 ```bash
-npm run test src/models/user/__teste__/user.service.spec.ts
+npm run test:watch src/models/user/__teste__/user.service.spec.ts
 ```
 
 * Teste State Service
 
 ```bash
-npm run test:watch src/state/__tests__/state.service.spec.ts
+npm run test:watch src/models/state/__test__/state.service.spec.ts
 ```
 
 * Teste Address Service

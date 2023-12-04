@@ -1,4 +1,4 @@
-import { stateMock } from '../../../models/state/__mock__/state.mock';
+import { stateMock } from '../../../models/state/__mocks__/state.mock';
 import { CityEntity } from '../entitties/city.entity';
 
 export const cityMock: CityEntity = {

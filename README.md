@@ -17,7 +17,7 @@ npm i bcrypt
 # Tipagens
 npm i -D @types/bcrypt
 ```
-  
+
 </details>
 
 Docker é uma plataforma voltada para a criação e execução de containers. Diferente de uma VM, um container empacota somente o código, dependências e variáveis de ambiente necessárias para a execução de uma aplicação. Sendo assim, ao invés de termos uma infraestrutura onde cada VM tem seu próprio SO sendo responsável por uma aplicação diferente, temos uma infraestrutura onde, com apenas um sistema operacional e através do Docker, podemos gerenciar diversas aplicações.
@@ -31,7 +31,7 @@ Docker é uma plataforma voltada para a criação e execução de containers. Di
 docker pull postgres
 ```
 
-* Instancia do Docker
+- Instancia do Docker
 
 ```bash
 docker run --name ecommerce -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -d postgres
@@ -46,16 +46,16 @@ Documentação: <a href="https://docs.nestjs.com/techniques/configuration" targe
 
 <details><summary>nestjs/cont instalação</summary>
 
-* Configuração
+- Configuração
 
 ```bash
 npm i --save @nestjs/config
 ```
 
- O módulo que fornece suporte para integração com o TypeORM, um ORM para Node.js, em aplicativos NestJS.
- Documentação <a href="https://docs.nestjs.com/recipes/sql-typeorm" target="blank">@nestjs/typeorm</a>
+O módulo que fornece suporte para integração com o TypeORM, um ORM para Node.js, em aplicativos NestJS.
+Documentação <a href="https://docs.nestjs.com/recipes/sql-typeorm" target="blank">@nestjs/typeorm</a>
 
-* Instalado o PostgreSQL e TypeORM
+- Instalado o PostgreSQL e TypeORM
 
 ```bash
 npm install --save typeorm pg @nestjs/typeorm
@@ -100,43 +100,43 @@ Criação de módulos que servirão como base para um cadastro mais realiza
 
 <details><summary>Criação dos primeiros módulos</summary>
 
-* Estado
+- Estado
 
 ```bash
 # Modulo
 nest g module state
 
 # Controller
-nest g controller state 
+nest g controller state
 
 # Service
-nest g service state 
+nest g service state
 ```
 
-* Cidade
+- Cidade
 
 ```bash
 # Modulo
 nest g module city
 
 # Controller
-nest g controller city 
+nest g controller city
 
 # Service
-nest g service city 
+nest g service city
 ```
 
-* Endereço
+- Endereço
 
 ```bash
 # Modulo
 nest g module address
 
 # Controller
-nest g controller address 
+nest g controller address
 
 # Service
-nest g service address 
+nest g service address
 ```
 
 </details>
@@ -148,7 +148,7 @@ Com o objetivo de retuzir o tempo de busca, será criado um modo de armazena alg
 <details><summary>Sistema do cache</summary>
 
 ```bash
-npm install cache-manager 
+npm install cache-manager
 ```
 
 ### Seperando o sistema de cache
@@ -160,14 +160,14 @@ Para pode utilizar o sistema de cache de forma global
 nest g module cache
 
 # Service
- nest g service cache 
- ```
+ nest g service cache
+```
 
 </details>
 
 ## Validações
 
-Para melhor desempenho e segurança o *Nest* trabalha com *Pipes* para geração de validações
+Para melhor desempenho e segurança o _Nest_ trabalha com _Pipes_ para geração de validações
 
 Pipes são classes anotadas com o decorador @Injectable() (você pode pensar que eles são semelhantes a Providers). Pipes implementam a interface genérica PipeTransform. Portanto, todo pipe deve ter um método transform(). Este método será chamado pelo NestJS para processar os argumentos.
 Documentação <a href="https://docs.nestjs.com/techniques/validation" target="blank">class-validator e class-transformer</a>
@@ -211,10 +211,10 @@ Os módulos responsáveis por fazer a autenticação através do login no sistem
 nest g module auth
 
 # Service Auth
-nest g service auth 
+nest g service auth
 
 # Controller Auth
-nest g controller auth 
+nest g controller auth
 ```
 
 </details>
@@ -258,14 +258,14 @@ npx typeorm migration:create ./src/migration/alter-table-user
 
 Para garantir a integridade do sistemas iremos realizar uns testes unitários
 
- O módulo para testes unitários e de integração em aplicativos NestJS.
- Documentação: <a href="https://docs.nestjs.com/fundamentals/testing" target="blank">tests</a>
+O módulo para testes unitários e de integração em aplicativos NestJS.
+Documentação: <a href="https://docs.nestjs.com/fundamentals/testing" target="blank">tests</a>
 
 O teste unitário consiste em verificar o comportamento das menores unidades em sua aplicação. Tecnicamente, isso seria uma classe ou até mesmo um método de classe em línguas orientadas a objetos, e seria um procedimento ou função em línguas processuais e funcionais. Funcionalmente, pode ser um conjunto de classes intimamente relacionadas.
 
 <details><summary>test</summary>
 
-* Teste User Service
+- Teste User Service
 
 > Para exexutar o teste automaticamente, sempre que houver uma alteração, deixar com a opção **:watch** depoois do **test**, caso contrário roda sem o **watch**
 
@@ -273,23 +273,23 @@ O teste unitário consiste em verificar o comportamento das menores unidades em 
 npm run test:watch src/models/user/__teste__/user.service.spec.ts
 ```
 
-* Teste State Service
+- Teste State Service
 
 ```bash
 npm run test:watch src/models/state/__test__/state.service.spec.ts
 ```
 
-* Teste Address Service
+- Teste Address Service
 
 ```bash
 npm run test:watch src/address/__tests__/address.service.spec.ts
 ```
 
-* Teste Auth Service
+- Teste Auth Service
 
 ```bash
 npm run test:watch src/auth/__tests__/auth.service.spec.ts
-````
+```
 
 </details>
 
@@ -305,37 +305,37 @@ npx typeorm migration:create ./src/migration/create-table-product
 
 <details><summary>Modulo Categoria e Produtos</summary>
 
-* Categoria
-  
+- Categoria
+
 ```bash
 # Module Category
 nest g module category
 
 # Service Category
-nest g service category 
+nest g service category
 
 # Controller Category
-nest g controller category 
+nest g controller category
 ```
 
-* Produto
-  
+- Produto
+
 ```bash
 # Module Product
 nest g module product
 
 # Service Product
-nest g service product 
+nest g service product
 
 # Controller Product
-nest g controller product 
+nest g controller product
 ```
 
 </details>
 
 <details><summary>Testes</summary>
 
-* Category Services
+- Category Services
 
 ```bash
 npm run test:watch src/category/__tests__/category.service.spec.ts
@@ -370,7 +370,7 @@ nest g module cart
 nest g service cart
 
 # Controller
-nest g controller cart 
+nest g controller cart
 ```
 
 </details>
@@ -565,7 +565,7 @@ npx typeorm migration:create ./src/migration/alter-table-payment
 npm run test src/payment/__test__/payment.service.spec.ts
 
 # Teste do controller de pedidos
-npm run test src/order/__test__/order.controller.spec.ts 
+npm run test src/order/__test__/order.controller.spec.ts
 
 # Teste do service de pedidos
 npm run test src/order/__test__/order.service.spec.ts

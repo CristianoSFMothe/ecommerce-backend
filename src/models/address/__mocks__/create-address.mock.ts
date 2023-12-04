@@ -1,4 +1,4 @@
-import { cityMock } from '../../../models/city/__mock__/city.mock';
+import { cityMock } from '../../../models/city/__mocks__/city.mock';
 import { addressMock } from './address.mock';
 import { CreateAddressDto } from '../dtos/createAddress.dto';
 

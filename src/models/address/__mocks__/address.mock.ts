@@ -1,6 +1,6 @@
-import { cityMock } from '../../../models/city/__mock__/city.mock';
+import { cityMock } from '../../../models/city/__mocks__/city.mock';
 import { AddressEntity } from '../entities/address.entity';
-import { userEntityMock } from '../../../models/user/__mock__/user.mock';
+import { userEntityMock } from '../../../models/user/__mocks__/user.mock';
 
 export const addressMock: AddressEntity = {
   cep: '43253252',

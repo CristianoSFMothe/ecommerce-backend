@@ -338,7 +338,7 @@ nest g controller models/product
 - Category Services
 
 ```bash
-npm run test:watch src/category/__tests__/category.service.spec.ts
+npm run test:watch src/models/category/__test__/category.service.spec.ts
 ```
 
 ## Criando o Usuário Administrator
@@ -350,7 +350,7 @@ npx typeorm migration:create ./src/migration/insert-root-in-user
 ## Test Server
 
 ```bash
-npm run test:watch src/product/__tests__/product.service.spec.ts
+npm run test:watch src/models/product/__tests__/product.service.spec.ts
 ```
 
 </details>

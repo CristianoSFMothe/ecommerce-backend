@@ -25,7 +25,7 @@ export class CategoryService {
     return categories;
   }
 
-  async findCategoryByName(name: string): Promise<CategoryEntity> {
+  public async findCategoryByName(name: string): Promise<CategoryEntity> {
     const category = await this.categoryRepository.findOne({
       where: {
         name,
@@ -39,7 +39,7 @@ export class CategoryService {
     return category;
   }
 
-  async createCategory(
+  public async createCategory(
     createCategory: CreateCategory,
   ): Promise<CategoryEntity> {
     const category = await this.findCategoryByName(createCategory.name).catch(
@@ -51,5 +51,19 @@ export class CategoryService {
     }
 
     return this.categoryRepository.save(createCategory);
+  }
+
+  public async findCategoryById(categoryId: number): Promise<CategoryEntity> {
+    const category = await this.categoryRepository.findOne({
+      where: {
+        id: categoryId,
+      },
+    });
+
+    if (!category) {
+      throw new NotFoundException(`Category id: ${categoryId} not found`);
+    }
+
+    return category;
   }
 }

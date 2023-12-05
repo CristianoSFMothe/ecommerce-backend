@@ -3,7 +3,7 @@ import { CityService } from '../city.service';
 import { Repository } from 'typeorm';
 import { CityEntity } from '../entitties/city.entity';
 import { CacheService } from '../../../utils/cache/cache.service';
-import { cityMock } from '../__mock__/city.mock';
+import { cityMock } from '../__mocks__/city.mock';
 import { getRepositoryToken } from '@nestjs/typeorm';
 
 describe('CityService', () => {

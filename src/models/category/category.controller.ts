@@ -20,7 +20,7 @@ export class CategoryController {
 
   @Roles(UserType.Admin)
   @Post()
-  async createCategory(
+  public async createCategory(
     @Body() createCategory: CreateCategory,
   ): Promise<CategoryEntity> {
     return this.categoryService.createCategory(createCategory);

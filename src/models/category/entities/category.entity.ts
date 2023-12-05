@@ -3,7 +3,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -22,6 +22,6 @@ export class CategoryEntity {
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
-  @ManyToOne(() => ProductEntity, (product: ProductEntity) => product.category)
+  @OneToMany(() => ProductEntity, (product: ProductEntity) => product.category)
   products?: ProductEntity[];
 }

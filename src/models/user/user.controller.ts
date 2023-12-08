@@ -1,9 +1,10 @@
-/* eslint-disable prettier/prettier */
 import { CreateUserDto } from './dtos/createUser.dto';
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Patch } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserEntity } from './entities/user.entity';
 import { ReturnUserDto } from './dtos/returnUser.dto';
+import { UpdatedPasswordDto } from './dtos/update-password.dto';
+import { UserId } from '../../decorators/user-id.decorator';
 
 @Controller('user')
 export class UserController {
@@ -30,5 +31,13 @@ export class UserController {
     return new ReturnUserDto(
       await this.userService.getUserByIdUsingRelations(userId),
     );
+  }
+
+  @Patch()
+  public async updatePasswordUser(
+    @Body() updatedPasswordDto: UpdatedPasswordDto,
+    @UserId() userId: number,
+  ): Promise<UserEntity> {
+    return this.userService.updatePasswordUser(updatedPasswordDto, userId);
   }
 }

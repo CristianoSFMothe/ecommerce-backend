@@ -1,10 +1,10 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-import { authentizationToLoginPayload } from '../utils/base/base-64-convert';
+import { authorizantionToLoginPayload } from '../utils/base/base-64-convert';
 
-export const UserId = createParamDecorator((__, ctx: ExecutionContext) => {
+export const UserId = createParamDecorator((_, ctx: ExecutionContext) => {
   const { authorization } = ctx.switchToHttp().getRequest().headers;
 
-  const loginPayload = authentizationToLoginPayload(authorization);
+  const loginPayload = authorizantionToLoginPayload(authorization);
 
   return loginPayload?.id;
 });

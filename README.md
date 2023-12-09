@@ -387,6 +387,9 @@ nest g module models/cart-product
 #
 nest g service models/cart-product
 
+# Alter table cart product
+npx typeorm migration:create ./src/migration/alter-table-cart-product
+
 ```
 
 </details>

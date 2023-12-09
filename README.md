@@ -382,10 +382,10 @@ nest g controller models/cart
 npx typeorm migration:create ./src/migration/create-table-cart-product
 
 # Module
-nest g module cart-product
+nest g module models/cart-product
 
 #
-nest g service cart-product
+nest g service models/cart-product
 
 ```
 

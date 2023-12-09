@@ -364,13 +364,13 @@ npm run test:watch src/models/product/__tests__/product.service.spec.ts
 npx typeorm migration:create ./src/migration/create-table-cart
 
 # Module
-nest g module cart
+nest g module models/cart
 
 # Service
-nest g service cart
+nest g service models/cart
 
 # Controller
-nest g controller cart
+nest g controller models/cart
 ```
 
 </details>

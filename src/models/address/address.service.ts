@@ -12,15 +12,15 @@ export class AddressService {
     @InjectRepository(AddressEntity)
     private readonly addressRepository: Repository<AddressEntity>,
     private readonly userService: UserService,
-    private readonly citService: CityService,
+    private readonly cityService: CityService,
   ) {}
 
-  public async createAddress(
+  async createAddress(
     createAddressDto: CreateAddressDto,
     userId: number,
   ): Promise<AddressEntity> {
     await this.userService.findUserById(userId);
-    await this.citService.findCityById(createAddressDto.cityId);
+    await this.cityService.findCityById(createAddressDto.cityId);
 
     return this.addressRepository.save({
       ...createAddressDto,
@@ -28,7 +28,7 @@ export class AddressService {
     });
   }
 
-  public async findAddressByUserId(userId: number): Promise<AddressEntity[]> {
+  async findAddressByUserId(userId: number): Promise<AddressEntity[]> {
     const addresses = await this.addressRepository.find({
       where: {
         userId,

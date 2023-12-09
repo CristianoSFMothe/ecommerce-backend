@@ -27,7 +27,7 @@ export class AddressEntity {
   @Column({ name: 'cep', nullable: false })
   cep: string;
 
-  @Column({ name: 'city_id', nullable: false, type: 'integer' })
+  @Column({ name: 'city_id', nullable: false })
   cityId: number;
 
   @CreateDateColumn({ name: 'created_at' })
@@ -36,11 +36,11 @@ export class AddressEntity {
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
-  @ManyToOne(() => UserEntity, (user: UserEntity) => user.addresses)
+  @ManyToOne(() => UserEntity, (user) => user.addresses)
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
   user?: UserEntity;
 
-  @ManyToOne(() => CityEntity, (city: CityEntity) => city.addresses)
+  @ManyToOne(() => CityEntity, (city) => city.addresses)
   @JoinColumn({ name: 'city_id', referencedColumnName: 'id' })
   city?: CityEntity;
 }

@@ -5,7 +5,7 @@ export class ReturnAddressDto {
   complement: string;
   numberAddress: number;
   cep: string;
-  city: ReturnCityDto;
+  city?: ReturnCityDto;
 
   constructor(address: AddressEntity) {
     this.complement = address.complement;

@@ -46,7 +46,7 @@ export class ProductController {
 
   @Roles(UserType.Admin)
   @Put('/:productId')
-  async updateProduct(
+  async updatedProduct(
     @Body() updatedProduct: UpdatedProductDto,
     @Param('productId') productId: number,
   ): Promise<ProductEntity> {

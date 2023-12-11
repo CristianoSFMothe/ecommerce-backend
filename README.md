@@ -405,7 +405,7 @@ npm run test src/models/cart-product/__test__/cart-product.service.spec.ts
 <details><summary>Teste Cart </summary>
 
 ```bash
-npm run test src/cart/__test__/cart.service.spec.ts
+npm run test src/models/cart/__test__/cart.service.spec.ts
 ```
 
 </details>
@@ -421,7 +421,7 @@ npm run test:cov
 <details><summary>Teste Controller Address </summary>
 
 ```bash
-npm run test src/address/__tests__/address.controller.spec.ts
+npm run test src/models/address/__tests__/address.controller.spec.ts
 ```
 
 </details>
@@ -437,7 +437,7 @@ npm run test src/auth/__tests__/auth.controller.spec.ts
 <details><summary>Teste Controller Cart </summary>
 
 ```bash
-npm run test src/cart/__test__/cart.controller.spec.ts
+npm run test src/models/cart/__test__/cart.controller.spec.ts
 ```
 
 </details>
@@ -445,7 +445,7 @@ npm run test src/cart/__test__/cart.controller.spec.ts
 <details><summary>Teste Controller Category </summary>
 
 ```bash
-npm run test src/category/__tests__/category.controller.spec.ts
+npm run test src/models/category/__tests__/category.controller.spec.ts
 ```
 
 </details>
@@ -453,7 +453,7 @@ npm run test src/category/__tests__/category.controller.spec.ts
 <details><summary>Teste Controller City </summary>
 
 ```bash
-npm run test src/city/__tests__/city.controller.spec.ts
+npm run test src/models/city/__tests__/city.controller.spec.ts
 ```
 
 </details>
@@ -461,7 +461,7 @@ npm run test src/city/__tests__/city.controller.spec.ts
 <details><summary>Teste Controller Product </summary>
 
 ```bash
-npm run test src/product/__tests__/product.controller.spec.ts
+npm run test src/models/product/__tests__/product.controller.spec.ts
 ```
 
 </details>
@@ -484,10 +484,10 @@ npx typeorm migration:create ./src/migration/create-table-payment
 
 ```bash
 # payment status module
-nest g module payment-status
+nest g module models/payment-status
 
 # payment status service
-nest g service payment-status
+nest g service models/payment-status
 ```
 
 </details>
@@ -496,10 +496,10 @@ nest g service payment-status
 
 ```bash
 # payment module
-nest g module payment
+nest g module models/payment
 
 # payment service
-nest g service payment
+nest g service models/payment
 ```
 
 </details>
@@ -520,16 +520,16 @@ npx typeorm migration:create ./src/migration/create-table-order-product
 
 ```bash
 # Module
-nest g module order
+nest g module models/order
 
 # Service
-nest g service order
+nest g service models/order
 
 # Controller
-nest g controller order
+nest g controller models/order
 
 # Test
-npm run test order
+npm run test models/order
 ```
 
 </details>
@@ -538,10 +538,10 @@ npm run test order
 
 ```bash
 # Module
-nest g module order-product
+nest g module models/order-product
 
 # Service
-nest g service order-product
+nest g service models/order-product
 
 # Product
 npx typeorm migration:create ./src/migration/create-table-order-product
@@ -565,19 +565,19 @@ npx typeorm migration:create ./src/migration/alter-table-payment
 
 ```bash
 # Teste do service de pagamento
-npm run test src/payment/__test__/payment.service.spec.ts
+npm run test src/models/payment/__test__/payment.service.spec.ts
 
 # Teste do controller de pedidos
-npm run test src/order/__test__/order.controller.spec.ts
+npm run test src/models/order/__test__/order.controller.spec.ts
 
 # Teste do service de pedidos
-npm run test src/order/__test__/order.service.spec.ts
+npm run test src/models/order/__test__/order.service.spec.ts
 
 # Teste do service de encomenda do produto
-npm run test src/order-product/__test__/order-product.service.spec.ts
+npm run test src/models/order-product/__test__/order-product.service.spec.ts
 
 # Teste do controller do User
-npm run test src/user/__tests__/user.controller.spec.ts
+npm run test src/models/user/__tests__/user.controller.spec.ts
 
 ```
 

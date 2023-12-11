@@ -60,7 +60,7 @@ export class CartController {
     @UserId() userId: number,
   ): Promise<ReturnCartDto> {
     return new ReturnCartDto(
-      await this.cartService.updateProductInCart(updatedCart, userId),
+      await this.cartService.updatedProductInCart(updatedCart, userId),
     );
   }
 }

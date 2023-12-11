@@ -87,7 +87,7 @@ export class CartService {
     return this.cartProductService.deleteProductCart(productId, cart.id);
   }
 
-  public async updateProductInCart(
+  public async updatedProductInCart(
     updatedCartDto: UpdatedCartDto,
     userId: number,
   ): Promise<CartEntity> {

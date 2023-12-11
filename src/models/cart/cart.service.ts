@@ -26,7 +26,7 @@ export class CartService {
     });
 
     return {
-      raw: [{ MESSAGES: 'Cart clear' }],
+      raw: [],
       affected: LINE_AFFECTED,
     };
   }

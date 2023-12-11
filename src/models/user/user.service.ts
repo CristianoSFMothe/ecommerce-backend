@@ -105,7 +105,7 @@ export class UserService {
     });
   }
 
-  public async updatePasswordUser(
+  public async updatedPasswordUser(
     updatedPasswordDto: UpdatedPasswordDto,
     userId: number,
   ): Promise<UserEntity> {

@@ -34,10 +34,10 @@ export class UserController {
   }
 
   @Patch()
-  public async updatePasswordUser(
+  public async updatedPasswordUser(
     @Body() updatedPasswordDto: UpdatedPasswordDto,
     @UserId() userId: number,
   ): Promise<UserEntity> {
-    return this.userService.updatePasswordUser(updatedPasswordDto, userId);
+    return this.userService.updatedPasswordUser(updatedPasswordDto, userId);
   }
 }

@@ -56,14 +56,14 @@ export class ProductService {
   }
 
   async updatedProduct(
-    updateProduct: UpdatedProductDto,
+    updatedProduct: UpdatedProductDto,
     productId: number,
   ): Promise<ProductEntity> {
     const product = await this.findProductById(productId);
 
     return this.productRepository.save({
       ...product,
-      ...updateProduct,
+      ...updatedProduct,
     });
   }
 }

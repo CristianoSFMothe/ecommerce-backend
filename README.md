@@ -397,7 +397,7 @@ npx typeorm migration:create ./src/migration/alter-table-cart-product
 <details><summary>Teste Cart Product</summary>
 
 ```bash
-npm run test src/cart-product/__test__/cart-product.service.spec.ts
+npm run test src/models/cart-product/__test__/cart-product.service.spec.ts
 ```
 
 </details>

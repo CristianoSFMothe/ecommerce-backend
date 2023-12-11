@@ -542,9 +542,6 @@ nest g module models/order-product
 
 # Service
 nest g service models/order-product
-
-# Product
-npx typeorm migration:create ./src/migration/create-table-order-product
 ```
 
 </details>

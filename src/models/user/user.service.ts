@@ -12,6 +12,7 @@ import {
   createPasswordHashed,
   validatePassword,
 } from '../../utils/validate/password';
+import { UserType } from './enum/user-type.enum';
 
 @Injectable()
 export class UserService {
@@ -20,26 +21,24 @@ export class UserService {
     private readonly userRepository: Repository<UserEntity>,
   ) {}
 
-  public async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
-    const emailExisting = await this.findUserByEmail(createUserDto.email).catch(
+  public async createUser(
+    createUserDto: CreateUserDto,
+    userType?: number,
+  ): Promise<UserEntity> {
+    const user = await this.findUserByEmail(createUserDto.email).catch(
       () => undefined,
     );
 
-    const cpfExisting = await this.findUserByCpf(createUserDto.cpf).catch(
-      () => undefined,
-    );
-
-    if (emailExisting || cpfExisting) {
+    if (user) {
       throw new BadRequestException(
-        'An error occurred during registration. Please try again.',
+        'An error occurred during registration. Please try again',
       );
     }
-
     const passwordHashed = await createPasswordHashed(createUserDto.password);
 
     return this.userRepository.save({
       ...createUserDto,
-      typeUser: 1,
+      typeUser: userType ? userType : UserType.User,
       password: passwordHashed,
     });
   }

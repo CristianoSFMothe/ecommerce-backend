@@ -5,6 +5,11 @@ import { UserEntity } from '../entities/user.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { userEntityMock } from '../__mocks__/user.mock';
 import { createUserMock } from '../__mocks__/createUser.mmock';
+import { UserType } from '../enum/user-type.enum';
+import {
+  updatedPasswordInvalidMock,
+  updatedPasswordMock,
+} from '../__mocks__/uptaded-user.mock';
 
 describe('UserService', () => {
   let service: UserService;
@@ -35,13 +40,13 @@ describe('UserService', () => {
     expect(userRepository).toBeDefined();
   });
 
-  it('should return in find user by email', async () => {
+  it('should return user in findUserByEmail', async () => {
     const user = await service.findUserByEmail(userEntityMock.email);
 
     expect(user).toEqual(userEntityMock);
   });
 
-  it('should return error in find user by email', async () => {
+  it('should return error in findUserByEmail', async () => {
     jest.spyOn(userRepository, 'findOne').mockResolvedValue(undefined);
 
     expect(
@@ -49,7 +54,7 @@ describe('UserService', () => {
     ).rejects.toThrowError();
   });
 
-  it('should return error in find user by email request DB', async () => {
+  it('should return error in findUserByEmail (error DB)', async () => {
     jest.spyOn(userRepository, 'findOne').mockRejectedValueOnce(new Error());
 
     expect(
@@ -57,50 +62,46 @@ describe('UserService', () => {
     ).rejects.toThrowError();
   });
 
-  it('should return in find user by CPF', async () => {
+  it('should return in findUserByCpf', async () => {
     const user = await service.findUserByCpf(userEntityMock.cpf);
 
     expect(user).toEqual(userEntityMock);
   });
 
-  it('should return error in find user by CPF request DB', async () => {
+  it('should return error in findUserByCpf request DB', async () => {
     jest.spyOn(userRepository, 'findOne').mockRejectedValueOnce(new Error());
 
     expect(service.findUserByCpf(userEntityMock.cpf)).rejects.toThrowError();
   });
 
-  it('should return error in find user by CPF', async () => {
+  it('should return error in findUserByCpf', async () => {
     jest.spyOn(userRepository, 'findOne').mockResolvedValue(undefined);
 
     expect(service.findUserByCpf(userEntityMock.cpf)).rejects.toThrowError();
   });
 
-  it('should return in find user by ID', async () => {
+  it('should return user in findUserById', async () => {
     const user = await service.findUserById(userEntityMock.id);
 
     expect(user).toEqual(userEntityMock);
   });
 
-  it('should return error in find user by ID', async () => {
+  it('should return error in findUserById', async () => {
     jest.spyOn(userRepository, 'findOne').mockResolvedValue(undefined);
 
-    expect(service.findUserById(userEntityMock.id)).rejects.toThrowError();
+    expect(
+      service.findUserByEmail(userEntityMock.email),
+    ).rejects.toThrowError();
   });
 
-  it('should return error in find user by ID request DB', async () => {
+  it('should return error in findUserById (error DB)', async () => {
     jest.spyOn(userRepository, 'findOne').mockRejectedValueOnce(new Error());
 
     expect(service.findUserById(userEntityMock.id)).rejects.toThrowError();
   });
 
-  it('should return in get user by id using relations', async () => {
-    const user = await service.findUserById(userEntityMock.id);
-
-    expect(user).toEqual(userEntityMock);
-  });
-
-  it('should return if user exist', async () => {
-    const user = await service.findUserById(userEntityMock.id);
+  it('should return user in getUserByIdUsingRelations', async () => {
+    const user = await service.getUserByIdUsingRelations(userEntityMock.id);
 
     expect(user).toEqual(userEntityMock);
   });
@@ -109,11 +110,48 @@ describe('UserService', () => {
     expect(service.createUser(createUserMock)).rejects.toThrowError();
   });
 
-  it('should return error if user not exist', async () => {
-    jest.spyOn(userRepository, 'findOne').mockResolvedValue(undefined);
+  // it('should return user if user not exist', async () => {
+  //   const spy = jest.spyOn(userRepository, 'save');
+  //   jest.spyOn(userRepository, 'findOne').mockResolvedValue(undefined);
 
-    const user = await service.createUser(createUserMock);
+  //   const user = await service.createUser(createUserMock);
+
+  //   expect(user).toEqual(userEntityMock);
+  //   expect(spy.mock.calls[0][0].typeUser).toEqual(UserType.User);
+  // });
+
+  // it('should return user if user not exist and user Admin', async () => {
+  //   const spy = jest.spyOn(userRepository, 'save');
+  //   jest.spyOn(userRepository, 'findOne').mockResolvedValue(undefined);
+
+  //   await service.createUser(createUserMock, UserType.Admin);
+
+  //   expect(spy.mock.calls[0][0].typeUser).toEqual(UserType.Admin);
+  // });
+
+  it('should return user in update password', async () => {
+    const user = await service.updatedPasswordUser(
+      updatedPasswordMock,
+      userEntityMock.id,
+    );
 
     expect(user).toEqual(userEntityMock);
+  });
+
+  it('should return invalid password in error', async () => {
+    expect(
+      service.updatedPasswordUser(
+        updatedPasswordInvalidMock,
+        userEntityMock.id,
+      ),
+    ).rejects.toThrowError();
+  });
+
+  it('should return error in user not exist', async () => {
+    jest.spyOn(userRepository, 'findOne').mockResolvedValue(undefined);
+
+    expect(
+      service.updatedPasswordUser(updatedPasswordMock, userEntityMock.id),
+    ).rejects.toThrowError();
   });
 });

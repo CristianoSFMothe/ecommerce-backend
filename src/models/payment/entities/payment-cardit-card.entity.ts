@@ -1,9 +1,20 @@
-import { ChildEntity, Column, TableInheritance } from 'typeorm';
+import { ChildEntity, Column } from 'typeorm';
 import { PaymentEntity } from './payment.entity';
+import { CreateOrderDto } from 'src/models/order/dtos/create-order.dto';
 
-@ChildEntity({ name: 'Payment ' })
-@TableInheritance({ column: { type: 'varchar', name: 'type' } })
-export class PaymentPixEntity extends PaymentEntity {
+@ChildEntity()
+export class PaymentCreditCardEntity extends PaymentEntity {
   @Column({ name: 'amount_payments', nullable: false })
   amountPayments: number;
+
+  constructor(
+    statusId: number,
+    price: number,
+    discount: number,
+    finalPrice: number,
+    createOrderDto: CreateOrderDto,
+  ) {
+    super(statusId, price, discount, finalPrice);
+    this.amountPayments = createOrderDto?.amountPayments || 0;
+  }
 }

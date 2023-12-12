@@ -1,12 +1,24 @@
-import { ChildEntity, Column, TableInheritance } from 'typeorm';
+import { ChildEntity, Column } from 'typeorm';
 import { PaymentEntity } from './payment.entity';
+import { CreateOrderDto } from 'src/models/order/dtos/create-order.dto';
 
-@ChildEntity({ name: 'Payment ' })
-@TableInheritance({ column: { type: 'varchar', name: 'type' } })
+@ChildEntity()
 export class PaymentPixEntity extends PaymentEntity {
   @Column({ name: 'code', nullable: false })
-  code: number;
+  code: string;
 
   @Column({ name: 'date_payment', nullable: false })
   datePayment: Date;
+
+  constructor(
+    statusId: number,
+    price: number,
+    discount: number,
+    finalPrice: number,
+    createOrderDTO: CreateOrderDto,
+  ) {
+    super(statusId, price, discount, finalPrice);
+    this.code = createOrderDTO?.codePix || '';
+    this.datePayment = new Date(createOrderDTO?.datePayment || '');
+  }
 }

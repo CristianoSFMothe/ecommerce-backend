@@ -12,7 +12,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'Payment ' })
+@Entity({ name: 'payment' })
 @TableInheritance({ column: { type: 'varchar', name: 'type' } })
 export abstract class PaymentEntity {
   @PrimaryGeneratedColumn('rowid')
@@ -31,7 +31,7 @@ export abstract class PaymentEntity {
   finalPrice: number;
 
   @Column({ name: 'type', nullable: false })
-  typee: string;
+  type: string;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
@@ -48,4 +48,16 @@ export abstract class PaymentEntity {
   )
   @JoinColumn({ name: 'status_id', referencedColumnName: 'id' })
   paymentStatus?: PaymentStatusEntity;
+
+  constructor(
+    statusId: number,
+    price: number,
+    discount: number,
+    finalPrice: number,
+  ) {
+    this.statusId = statusId;
+    this.price = price;
+    this.discount = discount;
+    this.finalPrice = finalPrice;
+  }
 }

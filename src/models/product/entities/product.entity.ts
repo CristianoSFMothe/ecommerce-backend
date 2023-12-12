@@ -1,3 +1,4 @@
+import { OrderProductEntity } from '../../../models/order-product/entites/order-product.entity';
 import { CartProductEntity } from '../../../models/cart-product/entities/cart-product.entity';
 import { CategoryEntity } from '../../../models/category/entities/category.entity';
 import {
@@ -46,4 +47,10 @@ export class ProductEntity {
     (cartProduct: CartProductEntity) => cartProduct.product,
   )
   cartProduct?: CartProductEntity[];
+
+  @OneToMany(
+    () => OrderProductEntity,
+    (orderProduct: OrderProductEntity) => orderProduct.product,
+  )
+  ordersProduct?: OrderProductEntity[];
 }

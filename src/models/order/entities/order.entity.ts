@@ -1,7 +1,14 @@
+import { OrderProductEntity } from '../../../models/order-product/entites/order-product.entity';
+import { AddressEntity } from '../../../models/address/entities/address.entity';
+import { PaymentEntity } from '../../../models/payment/entities/payment.entity';
+import { UserEntity } from '../../../models/user/entities/user.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -28,4 +35,22 @@ export class OrderEntity {
 
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
+
+  @ManyToOne(() => UserEntity, (user: UserEntity) => user.orders)
+  @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
+  user?: UserEntity;
+
+  @ManyToOne(() => AddressEntity, (address: AddressEntity) => address.orders)
+  @JoinColumn({ name: 'address_id', referencedColumnName: 'id' })
+  address?: AddressEntity;
+
+  @ManyToOne(() => PaymentEntity, (payment: PaymentEntity) => payment.orders)
+  @JoinColumn({ name: 'payment_id', referencedColumnName: 'id' })
+  payment: PaymentEntity;
+
+  @OneToMany(
+    () => OrderProductEntity,
+    (orderProduc: OrderProductEntity) => orderProduc.order,
+  )
+  ordersProduct: OrderProductEntity[];
 }

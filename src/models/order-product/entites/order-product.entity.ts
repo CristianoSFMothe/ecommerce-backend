@@ -24,7 +24,7 @@ export class OrderProductEntity {
   @Column({ name: 'amount', nullable: false })
   amount: number;
 
-  @Column({ name: 'orice', nullable: false })
+  @Column({ name: 'price', nullable: false })
   price: number;
 
   @CreateDateColumn({ name: 'created_at' })

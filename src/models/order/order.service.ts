@@ -42,7 +42,7 @@ export class OrderService {
   }
 
   // Criando o pedido com os produtos do carrinho
-  public async createOrderProdcutUsingCart(
+  public async createOrderProductUsingCart(
     cart: CartEntity,
     orderId: number,
     products: ProductEntity[],
@@ -88,7 +88,7 @@ export class OrderService {
     );
 
     // Criando o pedido de produtos usando o carrinho
-    await this.createOrderProdcutUsingCart(cart, order.id, products);
+    await this.createOrderProductUsingCart(cart, order.id, products);
 
     // Limpando o carrinho
     await this.cartService.clearCart(userId);

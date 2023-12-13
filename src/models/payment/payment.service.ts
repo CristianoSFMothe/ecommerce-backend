@@ -18,49 +18,54 @@ export class PaymentService {
   ) {}
 
   // Função para gerar o preço final
-  public generateFinalPrice(cart: CartEntity, products: ProductEntity[]) {
+  public generateFinalPrice(
+    cart: CartEntity,
+    products: ProductEntity[],
+  ): number {
     if (!cart.cartProduct || cart.cartProduct.length === 0) {
       return 0;
     }
 
-    return cart.cartProduct
-      .map((cartProduct: CartProductEntity) => {
-        const product = products.find(
-          (product) => product.id === cartProduct.productId,
-        );
-        console.log('product', products);
-        if (product) {
-          return cartProduct.amount * product.price;
-        }
+    return Number(
+      cart.cartProduct
+        .map((cartProduct: CartProductEntity) => {
+          const product = products.find(
+            (product) => product.id === cartProduct.productId,
+          );
+          if (product) {
+            return cartProduct.amount * product.price;
+          }
 
-        return 0;
-      })
-      .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+          return 0;
+        })
+        .reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+        .toFixed(2),
+    );
   }
 
   public async createPayment(
-    createOrderDTO: CreateOrderDto,
+    createOrderDto: CreateOrderDto,
     products: ProductEntity[],
     cart: CartEntity,
   ): Promise<PaymentEntity> {
     const finalPrice = this.generateFinalPrice(cart, products);
 
-    if (createOrderDTO.amountPayments) {
+    if (createOrderDto.amountPayments) {
       const paymentCreditCard = new PaymentCreditCardEntity(
         PaymentType.Done,
         finalPrice,
         0,
         finalPrice,
-        createOrderDTO,
+        createOrderDto,
       );
       return this.paymentRepository.save(paymentCreditCard);
-    } else if (createOrderDTO.codePix && createOrderDTO.datePayment) {
+    } else if (createOrderDto.codePix && createOrderDto.datePayment) {
       const paymentPix = new PaymentPixEntity(
         PaymentType.Done,
         finalPrice,
         0,
         finalPrice,
-        createOrderDTO,
+        createOrderDto,
       );
       return this.paymentRepository.save(paymentPix);
     }

@@ -8,6 +8,9 @@ import { PaymentEntity } from '../payment/entities/payment.entity';
 import { CartService } from '../cart/cart.service';
 import { OrderProductService } from '../order-product/order-product.service';
 import { ProductService } from '../product/product.service';
+import { OrderProductEntity } from '../order-product/entites/order-product.entity';
+import { CartEntity } from '../cart/entities/cart.entity';
+import { ProductEntity } from '../product/entities/product.entity';
 
 @Injectable()
 export class OrderService {
@@ -24,40 +27,71 @@ export class OrderService {
     private readonly producttService: ProductService,
   ) {}
 
-  public async createOrder(
+  // Função para salvar o pedido
+  public async saveOrder(
     createOrderDto: CreateOrderDto,
-    cartId: number,
     userId: number,
+    payment: PaymentEntity,
   ): Promise<OrderEntity> {
-    const payment: PaymentEntity = await this.paymentService.createPayment(
-      createOrderDto,
-    );
-
-    const order = await this.orderRepository.save({
+    return this.orderRepository.save({
       addressId: createOrderDto.addressId,
       date: new Date(),
       paymentId: payment.id,
       userId,
     });
+  }
 
-    const cart = await this.cartService.findCartByUserId(userId, true);
-
-    // Capturando todos os productsId e passando ele por array
-    const products = await this.producttService.findAll(
-      cart.cartProduct?.map((cartProduct) => cartProduct.productId),
-    );
-
-    await Promise.all(
+  // Criando o pedido com os produtos do carrinho
+  public async createOrderProdcutUsingCart(
+    cart: CartEntity,
+    orderId: number,
+    products: ProductEntity[],
+  ): Promise<OrderProductEntity[]> {
+    return Promise.all(
       cart.cartProduct?.map((cartProduct) =>
         this.orderProductService.createOrderProduct(
           cartProduct.productId,
-          order.id,
+          orderId,
           products.find((product) => product.id === cartProduct.productId)
             ?.price || 0,
           cartProduct.amount,
         ),
       ),
     );
+  }
+
+  // Função para criar o pedido
+  public async createOrder(
+    createOrderDto: CreateOrderDto,
+    userId: number,
+  ): Promise<OrderEntity> {
+    // Buscando o carrinho
+    const cart = await this.cartService.findCartByUserId(userId, true);
+
+    // Buscar os produtos e colocar ele num array
+    const products = await this.producttService.findAll(
+      cart.cartProduct?.map((cartProduct) => cartProduct.productId),
+    );
+
+    // Criando o pagamento
+    const payment: PaymentEntity = await this.paymentService.createPayment(
+      createOrderDto,
+      products,
+      cart,
+    );
+
+    // Salva o pedido
+    const order: OrderEntity = await this.saveOrder(
+      createOrderDto,
+      userId,
+      payment,
+    );
+
+    // Criando o pedido de produtos usando o carrinho
+    await this.createOrderProdcutUsingCart(cart, order.id, products);
+
+    // Limpando o carrinho
+    await this.cartService.clearCart(userId);
 
     return order;
   }

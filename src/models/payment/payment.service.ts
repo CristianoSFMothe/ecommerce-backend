@@ -6,6 +6,9 @@ import { CreateOrderDto } from '../order/dtos/create-order.dto';
 import { PaymentCreditCardEntity } from './entities/payment-cardit-card.entity';
 import { PaymentType } from '../payment-status/enum/paymente-type.enum';
 import { PaymentPixEntity } from './entities/payment-pix.entity';
+import { ProductEntity } from '../product/entities/product.entity';
+import { CartEntity } from '../cart/entities/cart.entity';
+import { CartProductEntity } from '../cart-product/entities/cart-product.entity';
 
 @Injectable()
 export class PaymentService {
@@ -15,32 +18,46 @@ export class PaymentService {
   ) {}
 
   public async createPayment(
-    createOrderDto: CreateOrderDto,
+    createOrderDTO: CreateOrderDto,
+    products: ProductEntity[],
+    cart: CartEntity,
   ): Promise<PaymentEntity> {
-    if (createOrderDto.amountPayments) {
+    const finalPrice = cart.cartProduct
+      ?.map((cartProduct: CartProductEntity) => {
+        const product = products.find(
+          (product) => product.id === cartProduct.productId,
+        );
+        console.log('product', products);
+        if (product) {
+          return cartProduct.amount * product.price;
+        }
+
+        return 0;
+      })
+      .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+
+    if (createOrderDTO.amountPayments) {
       const paymentCreditCard = new PaymentCreditCardEntity(
-        PaymentType.DONE,
+        PaymentType.Done,
+        finalPrice,
         0,
-        0,
-        0,
-        createOrderDto,
+        finalPrice,
+        createOrderDTO,
       );
-
       return this.paymentRepository.save(paymentCreditCard);
-    } else if (createOrderDto.codePix && createOrderDto.datePayment) {
+    } else if (createOrderDTO.codePix && createOrderDTO.datePayment) {
       const paymentPix = new PaymentPixEntity(
-        PaymentType.DONE,
+        PaymentType.Done,
+        finalPrice,
         0,
-        0,
-        0,
-        createOrderDto,
+        finalPrice,
+        createOrderDTO,
       );
-
       return this.paymentRepository.save(paymentPix);
     }
 
     throw new BadRequestException(
-      'Amount Paymente or Code PIX or Date Paymente not found.',
+      'Amount Payments or code pix or date payment not found',
     );
   }
 }

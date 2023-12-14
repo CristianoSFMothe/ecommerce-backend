@@ -11,6 +11,4 @@ export const orderMock: OrderEntity = {
   paymentId: paymentMock.id,
   updatedAt: new Date(),
   userId: userEntityMock.id,
-  payment: undefined,
-  ordersProduct: [],
 };

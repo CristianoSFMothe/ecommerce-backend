@@ -46,11 +46,11 @@ export class OrderEntity {
 
   @ManyToOne(() => PaymentEntity, (payment: PaymentEntity) => payment.orders)
   @JoinColumn({ name: 'payment_id', referencedColumnName: 'id' })
-  payment: PaymentEntity;
+  payment?: PaymentEntity;
 
   @OneToMany(
     () => OrderProductEntity,
     (orderProduc: OrderProductEntity) => orderProduc.order,
   )
-  ordersProduct: OrderProductEntity[];
+  ordersProduct?: OrderProductEntity[];
 }

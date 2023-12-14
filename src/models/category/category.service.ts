@@ -7,22 +7,50 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CategoryEntity } from './entities/category.entity';
 import { Repository } from 'typeorm';
 import { CreateCategory } from './dtos/create-category.dto';
+import { ProductService } from '../product/product.service';
+import { ReturnCategoryDto } from './dtos/return-category.dto';
+import { CountProduct } from '../product/dtos/count-product.dto';
 
 @Injectable()
 export class CategoryService {
   constructor(
     @InjectRepository(CategoryEntity)
     private readonly categoryRepository: Repository<CategoryEntity>,
+
+    private readonly productService: ProductService,
   ) {}
 
-  public async findAllCategories(): Promise<CategoryEntity[]> {
+  findAmountCateogyrInProducts(
+    category: CategoryEntity,
+    countList: CountProduct[],
+  ): number {
+    const count = countList.find(
+      (itemCount) => itemCount.category_id === category.id,
+    );
+
+    if (count) {
+      return count.total;
+    }
+
+    return 0;
+  }
+
+  public async findAllCategories(): Promise<ReturnCategoryDto[]> {
     const categories = await this.categoryRepository.find();
+
+    const count = await this.productService.countProductsCategoryId();
 
     if (!categories || categories.length === 0) {
       throw new NotFoundException('Categories empety');
     }
 
-    return categories;
+    return categories.map(
+      (category) =>
+        new ReturnCategoryDto(
+          category,
+          this.findAmountCateogyrInProducts(category, count),
+        ),
+    );
   }
 
   public async findCategoryByName(name: string): Promise<CategoryEntity> {

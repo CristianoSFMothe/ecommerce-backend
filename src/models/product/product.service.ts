@@ -97,7 +97,7 @@ export class ProductService {
     });
   }
 
-  public async countProductsCategoryId(): Promise<CountProduct[]> {
+  public async countProdutsByCategoryId(): Promise<CountProduct[]> {
     return this.productRepository
       .createQueryBuilder('product')
       .select('product.category_id, COUNT(*) as total')

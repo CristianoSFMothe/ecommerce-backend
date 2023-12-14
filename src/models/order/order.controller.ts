@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreateOrderDto } from './dtos/create-order.dto';
 import { OrderService } from './order.service';
 import { UserId } from '../../decorators/user-id.decorator';
@@ -31,6 +31,16 @@ export class OrderController {
   @Get('/all')
   public async findAllOrders(): Promise<ReturnOrderDto[]> {
     return (await this.orderService.findAllOrders()).map(
+      (order) => new ReturnOrderDto(order),
+    );
+  }
+
+  @Roles(UserType.Admin)
+  @Get('/:orderId')
+  public async findOrderByOrderId(
+    @Param('orderId') orderId: number,
+  ): Promise<ReturnOrderDto[]> {
+    return (await this.orderService.findOrderByOrderId(undefined, orderId)).map(
       (order) => new ReturnOrderDto(order),
     );
   }

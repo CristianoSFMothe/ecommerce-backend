@@ -16,13 +16,25 @@ export class ProductService {
   ) {}
 
   // Buscar uma lista de produtos especificos por ID
-  public async findAll(productId?: number[]): Promise<ProductEntity[]> {
+  public async findAll(
+    productId?: number[],
+    isFindRelations?: boolean,
+  ): Promise<ProductEntity[]> {
     let findOptions = {};
 
     if (productId && productId.length > 0) {
       findOptions = {
         where: {
           id: In(productId),
+        },
+      };
+    }
+
+    if (isFindRelations) {
+      findOptions = {
+        ...findOptions,
+        relations: {
+          category: true,
         },
       };
     }

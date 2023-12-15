@@ -53,4 +53,6 @@ export class OrderEntity {
     (orderProduc: OrderProductEntity) => orderProduc.order,
   )
   ordersProduct?: OrderProductEntity[];
+
+  amountProducts?: number;
 }

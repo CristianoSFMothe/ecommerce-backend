@@ -52,7 +52,7 @@ export class CartService {
     });
 
     if (!cart) {
-      throw new NotFoundException(`Cart active not found`);
+      throw new NotFoundException(`Cart active not found.`);
     }
 
     return cart;

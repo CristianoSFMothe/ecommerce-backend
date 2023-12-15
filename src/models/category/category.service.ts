@@ -66,7 +66,7 @@ export class CategoryService {
     });
 
     if (!category) {
-      throw new NotFoundException('Category name not found');
+      throw new NotFoundException('Category name not found.');
     }
 
     return category;

@@ -49,7 +49,7 @@ export class ProductService {
     const products = await this.productRepository.find(findOptions);
 
     if (!products || products.length === 0) {
-      throw new NotFoundException('Not found products');
+      throw new NotFoundException('Not found products.');
     }
 
     return products;
@@ -73,7 +73,7 @@ export class ProductService {
     });
 
     if (!product) {
-      throw new NotFoundException('Not found product');
+      throw new NotFoundException('Not found product.');
     }
 
     return product;

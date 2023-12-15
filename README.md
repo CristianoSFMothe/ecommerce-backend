@@ -570,12 +570,45 @@ npm run test src/models/order/__test__/order.controller.spec.ts
 # Teste do service de pedidos
 npm run test src/models/order/__test__/order.service.spec.ts
 
-# Teste do service de encomenda do produto
+# Teste do service de pedido do produto
 npm run test src/models/order-product/__test__/order-product.service.spec.ts
 
 # Teste do controller do User
 npm run test src/models/user/__tests__/user.controller.spec.ts
 
 ```
+
+</details>
+
+# Integração com a API do Correios
+
+Para informações da documentação da API do Correios consulta o seu manual <a href="https://www.correios.com.br/atendimento/developers/arquivos/manual-para-integracao-correios-api" target="blank">Documenta de integração Correios</a>
+
+## O que é o Correios Web Services?
+
+Correios Web Services – CWS fornece uma plataforma de serviços web, permitindo acesso, por integração, aos dados que podem auxiliar o cliente dos Correios em funcionalidades que visa agregar mais valor ao seu produto ou serviço e com dados mais assertivos, a exemplo dos dados de endereçamento. O CWS é direcionado ao cliente dos Correios que deseja desenvolver soluções customizadas em Tecnologia da Informação – TI.
+
+O acesso as funcionalidades, se dará por API (Aplication Programming Interface ou Interface de programação de aplicações). O cliente com contrato poderá ter acesso a API consideradas abertas ou restritas mediante autorização.
+
+O Protocolo de comunicação utilizado é por meio do Hyper Text Transfer Protocol – HTTP, responsável pela transferência de dados. Como meio de comunicação utilizando REST ou SOAP e retornando como respostas dados JSON ou XML, oferecendo assim a extensibilidade e a interoperabilidade entre as diversas aplicações, podendo ser executadas nas mais variadas plataformas e frameworks.
+
+<details><summary>Criação do Modulo de integração</summary>
+
+```bash
+# correios module
+nest g module models/integration/correios
+
+# correios service
+nest g service models/integration/correios
+
+# Correios controller
+nest g controller models/integration/correios
+```
+
+* Instalação do Axios
+ 
+ ```bash
+ npm i --save @nestjs/axios axios 
+ ``````
 
 </details>

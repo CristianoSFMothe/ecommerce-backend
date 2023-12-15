@@ -71,7 +71,7 @@ export class PaymentService {
     }
 
     throw new BadRequestException(
-      'Amount Payments or code pix or date payment not found',
+      'Amount Payments or code pix or date payment not found.',
     );
   }
 }

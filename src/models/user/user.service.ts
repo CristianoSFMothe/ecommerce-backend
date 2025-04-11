@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -6,7 +10,12 @@ import { UserEntity } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { hash } from 'bcrypt';
 import { UserType } from './enums/type-user.enum';
-import { validateDateFormatPtBr } from '../utils/date.utils';
+import {
+  calculateAgeFromDatePtBr,
+  validateDateFormatPtBr,
+} from '../utils/date.utils';
+import { isValidCpf } from '../utils/validate-cpf.utils';
+import { formatCpf } from '../utils/format-cpf.util';
 
 @Injectable()
 export class UserService {
@@ -16,15 +25,38 @@ export class UserService {
   ) {}
 
   async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
+    const { email, cpf, dateOfBirth } = createUserDto;
+
+    const formattedCpf = formatCpf(cpf);
+
+    validateDateFormatPtBr(dateOfBirth);
+    isValidCpf(cpf);
+
+    const emailExists = await this.userRepository.findOneBy({ email });
+    if (emailExists) {
+      throw new ConflictException(
+        'Já existe um usuário cadastrado com este e-mail.',
+      );
+    }
+
+    const cpfExists = await this.userRepository.findOneBy({ cpf });
+    if (cpfExists) {
+      throw new ConflictException(
+        'Já existe um usuário cadastrado com este CPF.',
+      );
+    }
+
     const saltOrRounds = 10;
     const passwordHashed = await hash(createUserDto.password, saltOrRounds);
 
-    validateDateFormatPtBr(createUserDto.dateOfBirth);
+    const age = calculateAgeFromDatePtBr(dateOfBirth);
 
     const userToSave = {
       ...createUserDto,
+      cpf: formattedCpf,
       typeUser: UserType.USER,
       password: passwordHashed,
+      age,
     };
 
     return this.userRepository.save(userToSave);
@@ -62,9 +94,57 @@ export class UserService {
     id: string,
     updateUserDto: UpdateUserDto,
   ): Promise<UserEntity> {
-    if (updateUserDto.password) {
+    const { email, cpf, password, dateOfBirth } = updateUserDto;
+
+    const existingUser = await this.userRepository.findOneBy({ id });
+
+    if (!existingUser) {
+      throw new NotFoundException('Usuário não encontrado');
+    }
+
+    if (email) {
+      if (email === existingUser.email) {
+        throw new ConflictException(
+          'O e-mail informado é o mesmo já cadastrado na conta.',
+        );
+      }
+
+      const emailInUse = await this.userRepository.findOneBy({ email });
+      if (emailInUse && emailInUse.id !== id) {
+        throw new ConflictException(
+          'Já existe um usuário cadastrado com este e-mail.',
+        );
+      }
+    }
+
+    if (cpf) {
+      if (cpf === existingUser.cpf) {
+        throw new ConflictException(
+          'O CPF informado é o mesmo já cadastrado na conta.',
+        );
+      }
+
+      isValidCpf(cpf);
+      const formattedCpf = formatCpf(cpf);
+      const cpfInUse = await this.userRepository.findOneBy({
+        cpf: formattedCpf,
+      });
+      if (cpfInUse && cpfInUse.id !== id) {
+        throw new ConflictException(
+          'Já existe um usuário cadastrado com este CPF.',
+        );
+      }
+
+      updateUserDto.cpf = formattedCpf;
+    }
+
+    if (dateOfBirth) {
+      validateDateFormatPtBr(dateOfBirth);
+    }
+
+    if (password) {
       const saltOrRounds = 10;
-      updateUserDto.password = await hash(updateUserDto.password, saltOrRounds);
+      updateUserDto.password = await hash(password, saltOrRounds);
     }
 
     const user = await this.userRepository.preload({

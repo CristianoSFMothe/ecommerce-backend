@@ -5,6 +5,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { hash } from 'bcrypt';
+import { UserType } from './enums/type-user.enum';
+import { validateDateFormatPtBr } from '../utils/date.utils';
 
 @Injectable()
 export class UserService {
@@ -15,14 +17,17 @@ export class UserService {
 
   async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
     const saltOrRounds = 10;
-
     const passwordHashed = await hash(createUserDto.password, saltOrRounds);
 
-    return this.userRepository.save({
+    validateDateFormatPtBr(createUserDto.dateOfBirth);
+
+    const userToSave = {
       ...createUserDto,
-      typeUser: 1,
+      typeUser: UserType.USER,
       password: passwordHashed,
-    });
+    };
+
+    return this.userRepository.save(userToSave);
   }
 
   async getAlUser(): Promise<UserEntity[]> {

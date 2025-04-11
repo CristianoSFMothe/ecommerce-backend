@@ -5,6 +5,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { UserType } from '../enums/type-user.enum';
+import { Gender } from '../enums/gender.enum';
 
 @Entity({ name: 'users' })
 export class UserEntity {
@@ -26,8 +28,24 @@ export class UserEntity {
   @Column({ name: 'password', nullable: false })
   password: string;
 
-  @Column({ name: 'type_user', nullable: false })
-  typeUser: number;
+  @Column({ name: 'date_of_birth', type: 'timestamp', nullable: false })
+  dateOfBirth: Date;
+
+  @Column({
+    name: 'type_user',
+    type: 'enum',
+    enum: UserType,
+    default: UserType.USER,
+  })
+  typeUser: UserType;
+
+  @Column({
+    name: 'gender',
+    type: 'enum',
+    enum: UserType,
+    default: Gender.MALE,
+  })
+  gender: Gender;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

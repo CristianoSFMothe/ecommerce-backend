@@ -1,3 +1,5 @@
+import { Gender } from '../enums/gender.enum';
+
 export class CreateUserDto {
   name: string;
   email: string;
@@ -5,5 +7,5 @@ export class CreateUserDto {
   cpf: string;
   password: string;
   dateOfBirth: string;
-  gender: string;
+  gender: Gender;
 }

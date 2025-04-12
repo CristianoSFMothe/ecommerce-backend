@@ -1,4 +1,9 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
 export class CreateTableCity1744343498972 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -21,6 +26,11 @@ export class CreateTableCity1744343498972 implements MigrationInterface {
             isNullable: false,
           },
           {
+            name: 'state_id',
+            type: 'uuid',
+            isNullable: false,
+          },
+          {
             name: 'created_at',
             type: 'timestamp',
             default: 'CURRENT_TIMESTAMP',
@@ -31,6 +41,14 @@ export class CreateTableCity1744343498972 implements MigrationInterface {
             default: 'CURRENT_TIMESTAMP',
           },
         ],
+      }),
+    );
+    await queryRunner.createForeignKey(
+      'cities',
+      new TableForeignKey({
+        columnNames: ['state_id'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'states',
       }),
     );
   }

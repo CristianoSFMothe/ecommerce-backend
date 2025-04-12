@@ -10,6 +10,7 @@ import { InsertCitiesForStateAlagoas1744424057090 } from 'src/migrations/1744424
 import { InsertCitiesForStateAmazonas1744424208941 } from 'src/migrations/1744424208941-InsertCitiesForStateAmazonas';
 import { InsertCitiesForStateAmapa1744424335727 } from 'src/migrations/1744424335727-InsertCitiesForStateAmapa';
 import { InsertCitiesForStateBahia1744424565256 } from 'src/migrations/1744424565256-InsertCitiesForStateBahia';
+import { InsertCitiesForStateCeara1744426536613 } from 'src/migrations/1744426536613-InsertCitiesForStateCeara';
 
 export const dataSource = new DataSource({
   ...dataSourceOptions,
@@ -25,5 +26,6 @@ export const dataSource = new DataSource({
     InsertCitiesForStateAmazonas1744424208941,
     InsertCitiesForStateAmapa1744424335727,
     InsertCitiesForStateBahia1744424565256,
+    InsertCitiesForStateCeara1744426536613,
   ],
 });

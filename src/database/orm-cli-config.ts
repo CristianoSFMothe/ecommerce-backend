@@ -4,6 +4,7 @@ import { CreateTableUser1744323850952 } from 'src/migrations/1744323850952-Creat
 import { CreateTableState1744343489997 } from 'src/migrations/1744343489997-CreateTableState';
 import { CreateTableCity1744343498972 } from 'src/migrations/1744343498972-CreateTableCity';
 import { CreateTableAddress1744343516528 } from 'src/migrations/1744343516528-CreateTableAddress';
+import { InsertStates1744423656700 } from 'src/migrations/1744423656700-InsertStates';
 
 export const dataSource = new DataSource({
   ...dataSourceOptions,
@@ -13,5 +14,6 @@ export const dataSource = new DataSource({
     CreateTableState1744343489997,
     CreateTableCity1744343498972,
     CreateTableAddress1744343516528,
+    InsertStates1744423656700,
   ],
 });

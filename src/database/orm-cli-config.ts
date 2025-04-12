@@ -15,6 +15,7 @@ import { InsertCitiesForStateDF1744427295658 } from 'src/migrations/174442729565
 import { InsertCitiesForStateEspiritoSanto1744427639065 } from 'src/migrations/1744427639065-InsertCitiesForStateEspiritoSanto';
 import { InsertCitiesForStateGoias1744427975730 } from 'src/migrations/1744427975730-InsertCitiesForStateGoias';
 import { InsertCitiesForStateMaranhao1744495182259 } from 'src/migrations/1744495182259-InsertCitiesForStateMaranhao';
+import { InsertCitiesForStateMinasGerais1744498169014 } from 'src/migrations/1744498169014-InsertCitiesForStateMinasGerais';
 
 export const dataSource = new DataSource({
   ...dataSourceOptions,
@@ -35,5 +36,6 @@ export const dataSource = new DataSource({
     InsertCitiesForStateEspiritoSanto1744427639065,
     InsertCitiesForStateGoias1744427975730,
     InsertCitiesForStateMaranhao1744495182259,
+    InsertCitiesForStateMinasGerais1744498169014,
   ],
 });

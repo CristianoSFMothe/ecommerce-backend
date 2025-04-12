@@ -11,6 +11,8 @@ import { InsertCitiesForStateAmazonas1744424208941 } from 'src/migrations/174442
 import { InsertCitiesForStateAmapa1744424335727 } from 'src/migrations/1744424335727-InsertCitiesForStateAmapa';
 import { InsertCitiesForStateBahia1744424565256 } from 'src/migrations/1744424565256-InsertCitiesForStateBahia';
 import { InsertCitiesForStateCeara1744426536613 } from 'src/migrations/1744426536613-InsertCitiesForStateCeara';
+import { InsertCitiesForStateDF1744427295658 } from 'src/migrations/1744427295658-InsertCitiesForStateDF';
+import { InsertCitiesForStateEspiritoSanto1744427639065 } from 'src/migrations/1744427639065-InsertCitiesForStateEspiritoSanto';
 
 export const dataSource = new DataSource({
   ...dataSourceOptions,
@@ -27,5 +29,7 @@ export const dataSource = new DataSource({
     InsertCitiesForStateAmapa1744424335727,
     InsertCitiesForStateBahia1744424565256,
     InsertCitiesForStateCeara1744426536613,
+    InsertCitiesForStateDF1744427295658,
+    InsertCitiesForStateEspiritoSanto1744427639065,
   ],
 });

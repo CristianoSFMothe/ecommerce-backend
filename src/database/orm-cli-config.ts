@@ -31,6 +31,7 @@ import { InsertCitiesForStateRioGrandeSul1744512910192 } from 'src/migrations/17
 import { InsertCitiesForStateSantaCatarina1744515004457 } from 'src/migrations/1744515004457-InsertCitiesForStateSantaCatarina';
 import { InsertCitiesForStateSergipe1744515287088 } from 'src/migrations/1744515287088-InsertCitiesForStateSergipe';
 import { InsertCitiesForStateSaoPaulo1744517071039 } from 'src/migrations/1744517071039-InsertCitiesForStateSaoPaulo';
+import { InsertCitiesForStateTocantins1744517275314 } from 'src/migrations/1744517275314-InsertCitiesForStateTocantins';
 
 export const dataSource = new DataSource({
   ...dataSourceOptions,
@@ -67,5 +68,6 @@ export const dataSource = new DataSource({
     InsertCitiesForStateSantaCatarina1744515004457,
     InsertCitiesForStateSergipe1744515287088,
     InsertCitiesForStateSaoPaulo1744517071039,
+    InsertCitiesForStateTocantins1744517275314,
   ],
 });

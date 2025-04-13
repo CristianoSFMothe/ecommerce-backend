@@ -29,6 +29,7 @@ import { InsertCitiesForStateRondonia1744512265164 } from 'src/migrations/174451
 import { InsertCitiesForStateRoraima1744512517502 } from 'src/migrations/1744512517502-InsertCitiesForStateRoraima';
 import { InsertCitiesForStateRioGrandeSul1744512910192 } from 'src/migrations/1744512910192-InsertCitiesForStateRioGrandeSul';
 import { InsertCitiesForStateSantaCatarina1744515004457 } from 'src/migrations/1744515004457-InsertCitiesForStateSantaCatarina';
+import { InsertCitiesForStateSergipe1744515287088 } from 'src/migrations/1744515287088-InsertCitiesForStateSergipe';
 
 export const dataSource = new DataSource({
   ...dataSourceOptions,
@@ -63,5 +64,6 @@ export const dataSource = new DataSource({
     InsertCitiesForStateRoraima1744512517502,
     InsertCitiesForStateRioGrandeSul1744512910192,
     InsertCitiesForStateSantaCatarina1744515004457,
+    InsertCitiesForStateSergipe1744515287088,
   ],
 });

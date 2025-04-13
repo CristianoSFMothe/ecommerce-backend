@@ -18,6 +18,7 @@ import { InsertCitiesForStateMaranhao1744495182259 } from 'src/migrations/174449
 import { InsertCitiesForStateMinasGerais1744498169014 } from 'src/migrations/1744498169014-InsertCitiesForStateMinasGerais';
 import { InsertCitiesForStateMatosGrossoSul1744502609689 } from 'src/migrations/1744502609689-InsertCitiesForStateMatosGrossoSul';
 import { InsertCitiesForStateMatosGrosso1744502960984 } from 'src/migrations/1744502960984-InsertCitiesForStateMatosGrosso';
+import { InsertCitiesForStatePara1744505476506 } from 'src/migrations/1744505476506-InsertCitiesForStatePara';
 
 export const dataSource = new DataSource({
   ...dataSourceOptions,
@@ -41,5 +42,6 @@ export const dataSource = new DataSource({
     InsertCitiesForStateMinasGerais1744498169014,
     InsertCitiesForStateMatosGrossoSul1744502609689,
     InsertCitiesForStateMatosGrosso1744502960984,
+    InsertCitiesForStatePara1744505476506,
   ],
 });

@@ -27,6 +27,7 @@ import { InsertCitiesForStateRioDeJaneiro1744511688643 } from 'src/migrations/17
 import { InsertCitiesForStateRioGrandeNorte1744511980746 } from 'src/migrations/1744511980746-InsertCitiesForStateRioGrandeNorte';
 import { InsertCitiesForStateRondonia1744512265164 } from 'src/migrations/1744512265164-InsertCitiesForStateRondonia';
 import { InsertCitiesForStateRoraima1744512517502 } from 'src/migrations/1744512517502-InsertCitiesForStateRoraima';
+import { InsertCitiesForStateRioGrandeSul1744512910192 } from 'src/migrations/1744512910192-InsertCitiesForStateRioGrandeSul';
 
 export const dataSource = new DataSource({
   ...dataSourceOptions,
@@ -59,5 +60,6 @@ export const dataSource = new DataSource({
     InsertCitiesForStateRioGrandeNorte1744511980746,
     InsertCitiesForStateRondonia1744512265164,
     InsertCitiesForStateRoraima1744512517502,
+    InsertCitiesForStateRioGrandeSul1744512910192,
   ],
 });

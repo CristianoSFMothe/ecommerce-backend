@@ -21,6 +21,7 @@ import { InsertCitiesForStateMatosGrosso1744502960984 } from 'src/migrations/174
 import { InsertCitiesForStatePara1744505476506 } from 'src/migrations/1744505476506-InsertCitiesForStatePara';
 import { InsertCitiesForStateParaiba1744507520573 } from 'src/migrations/1744507520573-InsertCitiesForStateParaiba';
 import { InsertCitiesForStatePernambuco1744510215776 } from 'src/migrations/1744510215776-InsertCitiesForStatePernambuco';
+import { InsertCitiesForStatePiaui1744510489593 } from 'src/migrations/1744510489593-InsertCitiesForStatePiaui';
 
 export const dataSource = new DataSource({
   ...dataSourceOptions,
@@ -47,5 +48,6 @@ export const dataSource = new DataSource({
     InsertCitiesForStatePara1744505476506,
     InsertCitiesForStateParaiba1744507520573,
     InsertCitiesForStatePernambuco1744510215776,
+    InsertCitiesForStatePiaui1744510489593,
   ],
 });

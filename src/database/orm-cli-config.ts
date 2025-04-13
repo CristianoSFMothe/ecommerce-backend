@@ -23,6 +23,7 @@ import { InsertCitiesForStateParaiba1744507520573 } from 'src/migrations/1744507
 import { InsertCitiesForStatePernambuco1744510215776 } from 'src/migrations/1744510215776-InsertCitiesForStatePernambuco';
 import { InsertCitiesForStatePiaui1744510489593 } from 'src/migrations/1744510489593-InsertCitiesForStatePiaui';
 import { InsertCitiesForStateParana1744510806862 } from 'src/migrations/1744510806862-InsertCitiesForStateParana';
+import { InsertCitiesForStateRioDeJaneiro1744511688643 } from 'src/migrations/1744511688643-InsertCitiesForStateRioDeJaneiro';
 
 export const dataSource = new DataSource({
   ...dataSourceOptions,
@@ -51,5 +52,6 @@ export const dataSource = new DataSource({
     InsertCitiesForStatePernambuco1744510215776,
     InsertCitiesForStatePiaui1744510489593,
     InsertCitiesForStateParana1744510806862,
+    InsertCitiesForStateRioDeJaneiro1744511688643,
   ],
 });

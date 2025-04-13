@@ -21,7 +21,7 @@ export class InsertStates1744423656700 implements MigrationInterface {
         ('b6de0e29-8660-4e58-9dfb-c3172a9079e6', 'Paraíba', 'PB'),
         ('d06094c1-b1d4-41a3-9c29-fc9942451484', 'Pernambuco', 'PE'),
         ('1e95ac7f-c3d3-4e4c-b1b3-7d65ae8bb2fd', 'Piauí', 'PI'),
-        ('2ec3928a-3017-4be2-b7b7-40ae649f2156', 'Paraná', 'PR'),
+        ('926a897b-e272-473f-8c66-6c8dc0adddab', 'Paraná', 'PR'),
         ('b71b7d6f-9861-4d0b-b1f4-d3de5538e771', 'Rio de Janeiro', 'RJ'),
         ('3e69f59d-79ec-41eb-8de5-f14e31c2ab3e', 'Rio Grande do Norte', 'RN'),
         ('94c6fd55-0059-4423-9cf2-dc7a24ebd785', 'Rondônia', 'RO'),

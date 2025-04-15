@@ -6,6 +6,7 @@ import { UserEntity } from 'src/models/user/entities/user.entity';
 
 import * as dotenv from 'dotenv';
 import { StateEntity } from 'src/models/state/entities/state.entity';
+import { CityEntity } from 'src/models/city/entities/city.entity';
 dotenv.config();
 
 export const dataSourceOptions: DataSourceOptions = {
@@ -15,7 +16,7 @@ export const dataSourceOptions: DataSourceOptions = {
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  entities: [UserEntity, StateEntity],
+  entities: [UserEntity, StateEntity, CityEntity],
   synchronize: false,
   logging: true,
 };

@@ -6,16 +6,16 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'states' })
-export class StateEntity {
+@Entity({ name: 'cities' })
+export class CityEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Column({ name: 'state_id', nullable: false })
+  stateId: string;
+
   @Column({ name: 'name', nullable: false })
   name: string;
-
-  @Column({ name: 'uf', nullable: false })
-  uf: string;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

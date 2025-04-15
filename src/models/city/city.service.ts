@@ -17,6 +17,10 @@ export class CityService {
       where: {
         name: ILike(`%${name}%`),
       },
+      select: {
+        id: true,
+        name: true,
+      },
     });
   }
 

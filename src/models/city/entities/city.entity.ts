@@ -1,7 +1,10 @@
+import { StateEntity } from 'src/models/state/entities/state.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -22,4 +25,8 @@ export class CityEntity {
 
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
+
+  @ManyToOne(() => StateEntity, (state) => state.cities, { eager: true })
+  @JoinColumn({ name: 'state_id' })
+  state: StateEntity;
 }

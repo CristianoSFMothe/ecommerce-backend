@@ -32,6 +32,7 @@ import { InsertCitiesForStateSantaCatarina1744515004457 } from 'src/migrations/1
 import { InsertCitiesForStateSergipe1744515287088 } from 'src/migrations/1744515287088-InsertCitiesForStateSergipe';
 import { InsertCitiesForStateSaoPaulo1744517071039 } from 'src/migrations/1744517071039-InsertCitiesForStateSaoPaulo';
 import { InsertCitiesForStateTocantins1744517275314 } from 'src/migrations/1744517275314-InsertCitiesForStateTocantins';
+import { AddCityStateRelationship1632857456219 } from 'src/migrations/1744688660386-AddRelationsStateAndCity';
 
 export const dataSource = new DataSource({
   ...dataSourceOptions,
@@ -69,5 +70,6 @@ export const dataSource = new DataSource({
     InsertCitiesForStateSergipe1744515287088,
     InsertCitiesForStateSaoPaulo1744517071039,
     InsertCitiesForStateTocantins1744517275314,
+    AddCityStateRelationship1632857456219,
   ],
 });

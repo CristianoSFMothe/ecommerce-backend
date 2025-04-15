@@ -74,7 +74,7 @@ export class UserService {
     });
 
     if (!user) {
-      throw new NotFoundException(`Usuário com ID ${id} não encontrado.`);
+      throw new NotFoundException('Usuário com ID não encontrado.');
     }
 
     return user;
@@ -84,7 +84,7 @@ export class UserService {
     const user = await this.userRepository.findOne({ where: { email } });
 
     if (!user) {
-      throw new NotFoundException(`Usuário com email ${email} não encontrado.`);
+      throw new NotFoundException('Usuário com email não encontrado.');
     }
 
     return user;

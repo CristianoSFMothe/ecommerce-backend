@@ -5,6 +5,7 @@ import { DataSourceOptions } from 'typeorm';
 import { UserEntity } from 'src/models/user/entities/user.entity';
 
 import * as dotenv from 'dotenv';
+import { StateEntity } from 'src/models/state/entities/state.entity';
 dotenv.config();
 
 export const dataSourceOptions: DataSourceOptions = {
@@ -14,7 +15,7 @@ export const dataSourceOptions: DataSourceOptions = {
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  entities: [UserEntity],
+  entities: [UserEntity, StateEntity],
   synchronize: false,
   logging: true,
 };

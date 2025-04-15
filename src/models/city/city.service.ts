@@ -1,7 +1,11 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CityEntity } from './entities/city.entity';
-import { ILike, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { StateService } from '../state/state.service';
 
 @Injectable()
@@ -12,16 +16,19 @@ export class CityService {
     private readonly stateService: StateService,
   ) {}
 
-  async findByName(name: string): Promise<CityEntity[]> {
-    return this.cityRepository.find({
-      where: {
-        name: ILike(`%${name}%`),
-      },
-      select: {
-        id: true,
-        name: true,
-      },
-    });
+  async findByName(name: string): Promise<any[]> {
+    if (!name || name.trim() === '') {
+      throw new BadRequestException(
+        'É necessário informar o nome da cidade para realizar a busca.',
+      );
+    }
+
+    return this.cityRepository
+      .createQueryBuilder('city')
+      .leftJoinAndSelect('city.state', 'state')
+      .where('city.name ILIKE :name', { name: `%${name}%` })
+      .select(['city.id', 'city.name', 'state.name', 'state.uf'])
+      .getMany();
   }
 
   async findByStateId(stateId: string): Promise<CityEntity[]> {

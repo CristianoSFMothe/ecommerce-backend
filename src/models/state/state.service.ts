@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { StateEntity } from './entities/state.entity';
 import { ILike, Repository } from 'typeorm';
+import { stateMessage } from 'src/common/messages/state.message';
 
 @Injectable()
 export class StateService {
@@ -22,7 +23,7 @@ export class StateService {
     const state = await this.stateRepository.findOneBy({ id });
 
     if (!state) {
-      throw new NotFoundException('Estado com ID não encontrado.');
+      throw new NotFoundException(stateMessage.STATE_NOT_FOUND);
     }
 
     return state;
@@ -35,7 +36,7 @@ export class StateService {
     });
 
     if (!states.length) {
-      throw new NotFoundException('Nenhum Estado com nome encontrado.');
+      throw new NotFoundException(stateMessage.STATE_NAME_FOUND);
     }
 
     return states;

@@ -9,58 +9,88 @@ import {
   MinLength,
 } from 'class-validator';
 import { Gender } from '../enums/gender.enum';
+import { userMessage } from 'src/common/messages/user.message';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CreateUserDto {
-  @IsString({ message: 'O nome deve ser um texto válido.' })
-  @IsNotEmpty({ message: 'O nome é obrigatório.' })
-  @MaxLength(100, { message: 'O nome deve conter no máximo 100 caracteres.' })
+  @ApiProperty({ example: 'Jose Maria' })
+  @IsString({
+    message: userMessage.INVALID_NAME,
+  })
+  @IsNotEmpty({
+    message: userMessage.REQUIRED_NAME,
+  })
+  @MaxLength(100, {
+    message: userMessage.MAX_LENGTH_NAME,
+  })
   name: string;
 
-  @IsString({ message: 'O e-mail deve ser um texto válido.' })
-  @IsNotEmpty({ message: 'O e-mail é obrigatório.' })
-  @IsEmail({}, { message: 'Informe um e-mail válido.' })
-  @MaxLength(150, { message: 'O e-mail deve conter no máximo 150 caracteres.' })
+  @ApiProperty({ example: 'jose_maria@email.com' })
+  @IsString({
+    message: userMessage.INVALID_EMAIL,
+  })
+  @IsNotEmpty({
+    message: userMessage.REQUIRED_EMAIL,
+  })
+  @IsEmail(
+    {},
+    {
+      message: userMessage.INVALID_EMAIL_FORMAT,
+    },
+  )
+  @MaxLength(150, {
+    message: userMessage.MAX_LENGTH_EMAIL,
+  })
   email: string;
 
-  @IsString({ message: 'O telefone deve ser um texto válido.' })
+  @ApiProperty({ example: '21988776655' })
+  @ApiPropertyOptional()
+  @IsString({ message: userMessage.INVALID_PHONE })
   @IsOptional()
   @MaxLength(20, {
-    message: 'O telefone deve conter no máximo 20 caracteres.',
+    message: userMessage.MAX_LENGTH_PHONE,
+  })
+  @Matches(/^[0-9]+$/, {
+    message: userMessage.INVALID_PHONE_FORMAT,
   })
   phone?: string;
 
-  @IsString({ message: 'O CPF deve ser um texto válido.' })
-  @IsNotEmpty({ message: 'O CPF é obrigatório.' })
-  @MaxLength(14, { message: 'O CPF deve conter no máximo 14 caracteres.' })
+  @ApiProperty({ example: '57256174080' })
+  @IsString({ message: userMessage.INVALID_CPF_FORMAT })
+  @IsNotEmpty({ message: userMessage.REQUIRED_CPF })
+  @MaxLength(14, { message: userMessage.MAX_LENGTH_CPF })
   cpf: string;
 
-  @IsString({ message: 'A senha deve ser um texto válido.' })
-  @IsNotEmpty({ message: 'A senha é obrigatória.' })
-  @MinLength(6, { message: 'A senha deve conter no mínimo 6 caracteres.' })
-  @MaxLength(255, { message: 'A senha deve conter no máximo 255 caracteres.' })
+  @ApiProperty({ example: 'Abc@123' })
+  @IsString({ message: userMessage.INVALID_PASSWORD })
+  @IsNotEmpty({ message: userMessage.REQUIRED_PASSWORD })
+  @MinLength(6, { message: userMessage.MIN_LENGTH_PASSWORD })
+  @MaxLength(255, { message: userMessage.MAX_LENGTH_PASSWORD })
   @Matches(/[A-Z]/, {
-    message: 'A senha deve conter ao menos uma letra maiúscula.',
+    message: userMessage.PASSWORD_ONE_CAPITAL_LETTER,
   })
   @Matches(/[a-z]/, {
-    message: 'A senha deve conter ao menos uma letra minúscula.',
+    message: userMessage.PASSWORD_ONE_LOWERCASE_LETTER,
   })
   @Matches(/\d/, {
-    message: 'A senha deve conter ao menos um número.',
+    message: userMessage.PASSWORD_ONE_NUMBER,
   })
   @Matches(/[\W_]/, {
-    message: 'A senha deve conter ao menos um caractere especial.',
+    message: userMessage.PASSWORD_ONE_SPECIAL_LETTER,
   })
   password: string;
 
-  @IsString({ message: 'A data de nascimento deve ser um texto válido.' })
-  @IsNotEmpty({ message: 'A data de nascimento é obrigatória.' })
+  @ApiProperty({ example: '01012000' })
+  @IsString({ message: userMessage.PASSWORD_ONE_CAPITAL_LETTER })
+  @IsNotEmpty({ message: userMessage.REQUIRED_DATE_OF_BIRTH })
   @MaxLength(10, {
-    message: 'A data de nascimento deve seguir o formato dd/mm/yyyy.',
+    message: userMessage.DATE_OF_BIRTH_INVALID_FORMATTING,
   })
   dateOfBirth: string;
 
+  @ApiProperty({ example: Gender.MALE })
   @IsEnum(Gender, {
-    message: 'O campo gênero deve ser MALE ou FEMALE.',
+    message: userMessage.REQUIRED_ENUM,
   })
   gender: Gender;
 }

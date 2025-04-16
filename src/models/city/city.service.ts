@@ -10,6 +10,7 @@ import { StateService } from '../state/state.service';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Inject } from '@nestjs/common';
 import { Cache } from 'cache-manager';
+import { cityMessage } from 'src/common/messages/city.message';
 
 @Injectable()
 export class CityService {
@@ -22,9 +23,7 @@ export class CityService {
 
   async findByName(name: string): Promise<any[]> {
     if (!name || name.trim() === '') {
-      throw new BadRequestException(
-        'É necessário informar o nome da cidade para realizar a busca.',
-      );
+      throw new BadRequestException(cityMessage.REQUIRED_NAME_CITY);
     }
 
     return this.cityRepository
@@ -40,7 +39,6 @@ export class CityService {
       `cities_by_state_${stateId}`,
     );
     if (cachedCities) {
-      console.log('Retornando cidades do cache');
       return cachedCities;
     }
 
@@ -51,7 +49,7 @@ export class CityService {
     });
 
     if (!cities || cities.length === 0) {
-      throw new NotFoundException('Nenhuma cidade encontrada para o estado');
+      throw new NotFoundException(cityMessage.CITY_NOT_FOUND_IN_STATE);
     }
 
     await this.cacheManager.set(`cities_by_state_${stateId}`, cities, 60); // O ttl é passado diretamente como número

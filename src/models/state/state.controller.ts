@@ -1,7 +1,9 @@
 import { Controller, Get, Param, ParseUUIDPipe, Query } from '@nestjs/common';
 import { StateService } from './state.service';
 import { StateEntity } from './entities/state.entity';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Estados')
 @Controller('states')
 export class StateController {
   constructor(private readonly stateService: StateService) {}

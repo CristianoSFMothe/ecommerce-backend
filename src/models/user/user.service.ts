@@ -7,7 +7,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './entities/user.entity';
-import { Repository } from 'typeorm';
+import { DeepPartial, Repository } from 'typeorm';
 import { hash } from 'bcrypt';
 import { UserType } from './enums/type-user.enum';
 import {
@@ -16,6 +16,8 @@ import {
 } from '../utils/date.utils';
 import { isValidCpf } from '../utils/validate-cpf.utils';
 import { formatCpf } from '../utils/format-cpf.util';
+import { formatPhoneNumber } from '../utils/formate-phone.utils';
+import { userMessage } from 'src/common/messages/user.message';
 
 @Injectable()
 export class UserService {
@@ -25,25 +27,28 @@ export class UserService {
   ) {}
 
   async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
-    const { email, cpf, dateOfBirth } = createUserDto;
+    const { email, cpf, dateOfBirth, phone } = createUserDto;
+
+    if (phone) {
+      createUserDto.phone = formatPhoneNumber(phone);
+    } else {
+      createUserDto.phone = undefined;
+    }
 
     const formattedCpf = formatCpf(cpf);
-
     validateDateFormatPtBr(dateOfBirth);
     isValidCpf(cpf);
 
     const emailExists = await this.userRepository.findOneBy({ email });
     if (emailExists) {
-      throw new ConflictException(
-        'Já existe um usuário cadastrado com este e-mail.',
-      );
+      throw new ConflictException(userMessage.EXISTING_EMAIL);
     }
 
-    const cpfExists = await this.userRepository.findOneBy({ cpf });
+    const cpfExists = await this.userRepository.findOneBy({
+      cpf: formattedCpf,
+    });
     if (cpfExists) {
-      throw new ConflictException(
-        'Já existe um usuário cadastrado com este CPF.',
-      );
+      throw new ConflictException(userMessage.EXISTING_CPF);
     }
 
     const saltOrRounds = 10;
@@ -51,12 +56,12 @@ export class UserService {
 
     const age = calculateAgeFromDatePtBr(dateOfBirth);
 
-    const userToSave = {
+    const userToSave: DeepPartial<UserEntity> = {
       ...createUserDto,
       cpf: formattedCpf,
-      typeUser: UserType.USER,
       password: passwordHashed,
       age,
+      typeUser: UserType.USER,
     };
 
     return this.userRepository.save(userToSave);
@@ -74,7 +79,7 @@ export class UserService {
     });
 
     if (!user) {
-      throw new NotFoundException('Usuário com ID não encontrado.');
+      throw new NotFoundException(userMessage.USER_NOT_FOUND);
     }
 
     return user;
@@ -84,7 +89,7 @@ export class UserService {
     const user = await this.userRepository.findOne({ where: { email } });
 
     if (!user) {
-      throw new NotFoundException('Usuário com email não encontrado.');
+      throw new NotFoundException(userMessage.USER_EMAIL_NOT_FOUND);
     }
 
     return user;
@@ -99,29 +104,23 @@ export class UserService {
     const existingUser = await this.userRepository.findOneBy({ id });
 
     if (!existingUser) {
-      throw new NotFoundException('Usuário não encontrado');
+      throw new NotFoundException(userMessage.USER_NOT_FOUND);
     }
 
     if (email) {
       if (email === existingUser.email) {
-        throw new ConflictException(
-          'O e-mail informado é o mesmo já cadastrado na conta.',
-        );
+        throw new ConflictException(userMessage.SAME_USER_EMAIL);
       }
 
       const emailInUse = await this.userRepository.findOneBy({ email });
       if (emailInUse && emailInUse.id !== id) {
-        throw new ConflictException(
-          'Já existe um usuário cadastrado com este e-mail.',
-        );
+        throw new ConflictException(userMessage.EXISTING_EMAIL);
       }
     }
 
     if (cpf) {
       if (cpf === existingUser.cpf) {
-        throw new ConflictException(
-          'O CPF informado é o mesmo já cadastrado na conta.',
-        );
+        throw new ConflictException(userMessage.SAME_CPF_USER);
       }
 
       isValidCpf(cpf);
@@ -130,9 +129,7 @@ export class UserService {
         cpf: formattedCpf,
       });
       if (cpfInUse && cpfInUse.id !== id) {
-        throw new ConflictException(
-          'Já existe um usuário cadastrado com este CPF.',
-        );
+        throw new ConflictException(userMessage.EXISTING_CPF);
       }
 
       updateUserDto.cpf = formattedCpf;
@@ -153,7 +150,7 @@ export class UserService {
     });
 
     if (!user) {
-      throw new NotFoundException('Usuário não encontrado');
+      throw new NotFoundException(userMessage.USER_NOT_FOUND);
     }
 
     return this.userRepository.save(user);
@@ -163,11 +160,11 @@ export class UserService {
     const user = await this.userRepository.findOneBy({ id });
 
     if (!user) {
-      throw new NotFoundException('Usuário não encontrado');
+      throw new NotFoundException(userMessage.USER_NOT_FOUND);
     }
 
     await this.userRepository.delete(id);
 
-    return { message: 'Usuário removido com sucesso' };
+    return { message: userMessage.REMOVER_USER };
   }
 }

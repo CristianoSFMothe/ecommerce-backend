@@ -50,7 +50,7 @@ export class CreateUserDto {
   @MaxLength(20, {
     message: userMessage.MAX_LENGTH_PHONE,
   })
-  @Matches(/^[0-9]+$/, {
+  @Matches(/^(\(?\d{2}\)?\s?)?\d{5}-?\d{4}$/, {
     message: userMessage.INVALID_PHONE_FORMAT,
   })
   phone?: string;

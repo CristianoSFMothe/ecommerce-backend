@@ -1,10 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { HttpErrorResponse } from './http-error-response';
-import { userMessage } from '../messages/user.message';
 
 export class BadRequestUser extends HttpErrorResponse {
   @ApiProperty({
-    example: userMessage.MIN_LENGTH_PASSWORD,
+    example:
+      'Erro de requisição inválida. Detalhes específicos podem ser fornecidos.',
   })
   declare message: string;
 

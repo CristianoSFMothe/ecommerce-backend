@@ -1,19 +1,19 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { HttpErrorResponse } from './http-error-response';
 
-export class ConflictUser extends HttpErrorResponse {
+export class UserNotFound extends HttpErrorResponse {
   @ApiProperty({
-    example: 'Erro de conflito. Detalhes específicos podem ser fornecidos.',
+    example: 'Recurso não encontrado. Verifique os detalhes.',
   })
   declare message: string;
 
   @ApiProperty({
-    example: 'Conflict',
+    example: 'Not Found',
   })
   declare error: string;
 
   @ApiProperty({
-    example: 409,
+    example: 404,
   })
   declare statusCode: number;
 }

@@ -39,7 +39,7 @@ export const userMessage = {
   EXISTING_CPF:
     'Já existe um usuário registrado com este CPF. Tente outro CPF.',
   USER_NOT_FOUND:
-    'Usuário não encontrado. Verifique os dados e tente novamente.',
+    'Nenhum usuário não encontrado. Verifique os dados e tente novamente.',
   USER_EMAIL_NOT_FOUND:
     'Não encontramos um usuário com este e-mail. Verifique e tente novamente.',
   SAME_USER_EMAIL: 'O e-mail informado é o mesmo já cadastrado em sua conta.',

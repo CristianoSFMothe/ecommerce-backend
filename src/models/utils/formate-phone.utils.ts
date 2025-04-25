@@ -1,4 +1,5 @@
 import { BadRequestException } from '@nestjs/common';
+import { userMessage } from 'src/common/messages/user.message';
 
 export const formatPhoneNumber = (phone: string): string => {
   const cleaned = phone.replace(/\D/g, '');
@@ -7,7 +8,5 @@ export const formatPhoneNumber = (phone: string): string => {
     return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 7)}-${cleaned.slice(7)}`;
   }
 
-  throw new BadRequestException(
-    'Número de telefone inválido. O formato esperado é (XX) XXXXX-XXXX.',
-  );
+  throw new BadRequestException(userMessage.INVALID_PHONE_FORMAT);
 };

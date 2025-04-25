@@ -56,7 +56,7 @@ export class CreateUserDto {
   phone?: string;
 
   @ApiProperty({ example: '57256174080' })
-  @IsString({ message: userMessage.INVALID_CPF_FORMAT })
+  @IsString({ message: userMessage.INVALID_CPF })
   @IsNotEmpty({ message: userMessage.REQUIRED_CPF })
   @MaxLength(14, { message: userMessage.MAX_LENGTH_CPF })
   cpf: string;
